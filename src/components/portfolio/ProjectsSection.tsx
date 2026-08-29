@@ -62,7 +62,7 @@ function ProjectRow({ project, index, onSelect }: { project: ProjectData; index:
         <span className="text-muted-foreground">{project.type}</span>
       </div>
 
-      <div className="flex flex-wrap gap-2 mt-2" onClick={(e) => e.stopPropagation()}>
+      <div className="flex flex-wrap items-center gap-2 mt-2" onClick={(e) => e.stopPropagation()}>
         <button
           type="button"
           onClick={() => onSelect(project)}
@@ -72,12 +72,23 @@ function ProjectRow({ project, index, onSelect }: { project: ProjectData; index:
         >
           {uiText.projects.aboutApp}
         </button>
+        {project.deployUrl.startsWith("http") && (
+          <a
+            href={project.deployUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover-float rounded-full bg-primary/20 border border-primary/40 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.15em] text-primary transition-colors hover:bg-primary hover:text-primary-foreground flex items-center gap-1.5"
+          >
+            <span>LIVE WEB</span>
+            <span>↗</span>
+          </a>
+        )}
         <div
-          className="liquid-glass flex items-center gap-1.5 rounded-full px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground"
+          className="liquid-glass flex items-center gap-1.5 rounded-full px-4 py-2 font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground"
         >
           <span>{project.stack[0]}</span>
           <span>·</span>
-          <span>{project.stack[2]}</span>
+          <span>{project.stack[1]}</span>
         </div>
       </div>
 
@@ -125,18 +136,34 @@ export function ProjectsSection() {
         ))}
       </motion.div>
 
-      {/* Fully-customized Lightbox Dialog for Fine Art Photography */}
+      {/* Lightbox Dialog for Projects */}
       <Dialog open={selectedProject !== null} onOpenChange={(open) => !open && setSelectedProject(null)}>
         <DialogContent className="max-w-[92vw] md:max-w-[85vw] lg:max-w-[75vw] xl:max-w-[65vw] overflow-y-auto max-h-[92dvh] p-0 border border-border bg-background shadow-2xl rounded-2xl">
           {selectedProject && (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               {/* Image Column */}
-              <div className="lg:col-span-8 bg-black/5 flex items-center justify-center p-4 min-h-[40vh] lg:min-h-[50vh] border-b lg:border-b-0 lg:border-r border-border">
+              <div className="lg:col-span-8 bg-black/5 flex flex-col items-center justify-center p-6 min-h-[40vh] lg:min-h-[50vh] border-b lg:border-b-0 lg:border-r border-border">
                 <img
                   src={selectedProject.preview}
                   alt={selectedProject.name}
-                  className="max-h-[60dvh] object-contain rounded-lg shadow-xl"
+                  className="max-h-[55dvh] w-full object-contain rounded-xl shadow-xl"
                 />
+                {selectedProject.deployUrl.startsWith("http") && (
+                  <div className="mt-4 w-full text-center">
+                    <p className="font-mono text-[11px] text-muted-foreground mb-2">
+                      ⚡ Website hiện đang hoạt động trực tuyến phiên bản thử nghiệm
+                    </p>
+                    <a
+                      href={selectedProject.deployUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-primary text-primary-foreground px-6 py-2.5 font-mono text-xs font-semibold uppercase tracking-wider shadow-lg hover:opacity-90 transition-opacity"
+                    >
+                      <span>TRUY CẬP WEBSITE ({selectedProject.deployUrl.replace('https://', '')})</span>
+                      <span>↗</span>
+                    </a>
+                  </div>
+                )}
               </div>
 
               {/* Details Column */}
@@ -166,18 +193,20 @@ export function ProjectsSection() {
                   <span className="font-mono text-[10px] uppercase tracking-widest text-foreground font-bold border-t border-border/60 pt-4">
                     {uiText.projects.techStack}
                   </span>
-                  <div className="grid grid-cols-2 gap-2 mt-1">
-                    <ExifTag label="Camera" value={selectedProject.stack[0]} />
-                    <ExifTag label="Lens" value={selectedProject.stack[1]} />
-                    <ExifTag label="ISO" value={selectedProject.stack[2]} />
-                    <ExifTag label="Aperture" value={selectedProject.stack[3]} />
-                    <ExifTag label="Shutter" value={selectedProject.stack[4]} />
-                    <ExifTag label="Tag" value={selectedProject.stack[5] || "Fine Art"} />
+                  <div className="flex flex-wrap gap-2 mt-1">
+                    {selectedProject.stack.map((tech, idx) => (
+                      <span
+                        key={idx}
+                        className="rounded-lg border border-border bg-card/60 px-3 py-1.5 font-mono text-xs font-medium text-foreground backdrop-blur"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </div>
                 </div>
 
                 <div className="mt-auto pt-4 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-muted-foreground border-t border-border/60">
-                  <span>PLATE COLLECTION</span>
+                  <span>CAPSTONE & PORTFOLIO</span>
                   <span>{selectedProject.year}</span>
                 </div>
               </div>
