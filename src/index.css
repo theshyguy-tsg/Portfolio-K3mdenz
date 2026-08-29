@@ -1,0 +1,230 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=VT323&display=swap');
+
+@layer utilities {
+  .font-pixel {
+    font-family: 'Press Start 2P', cursive, monospace;
+  }
+  .font-silkscreen {
+    font-family: 'Silkscreen', monospace;
+  }
+  .font-vt323 {
+    font-family: 'VT323', monospace;
+  }
+  .font-cinzel {
+    font-family: 'Cinzel', serif;
+  }
+  .font-playfair {
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* Van Gogh Starry Night Swirling Texture */
+  .vangogh-bg {
+    background-color: #040916;
+    background-image: 
+      radial-gradient(circle at 85% 15%, rgba(254, 240, 138, 0.3) 0%, rgba(234, 179, 8, 0.15) 25%, transparent 50%),
+      radial-gradient(circle at 20% 80%, rgba(56, 189, 248, 0.25) 0%, rgba(30, 58, 138, 0.15) 35%, transparent 60%),
+      radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 70%),
+      linear-gradient(135deg, #030712 0%, #081432 40%, #11234f 75%, #050d21 100%);
+    background-attachment: fixed;
+  }
+
+  @keyframes starry-swirl {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.06); }
+    100% { transform: rotate(360deg) scale(1); }
+  }
+
+  @keyframes starry-swirl-reverse {
+    0% { transform: rotate(360deg) scale(1.05); }
+    50% { transform: rotate(180deg) scale(0.95); }
+    100% { transform: rotate(0deg) scale(1.05); }
+  }
+
+  @keyframes star-twinkle {
+    0%, 100% { opacity: 0.35; transform: scale(0.85) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.3) rotate(45deg); filter: drop-shadow(0 0 12px rgba(253, 224, 71, 0.95)); }
+  }
+
+  @keyframes star-float {
+    0% { transform: translateY(0px) translateX(0px); }
+    25% { transform: translateY(-14px) translateX(10px); }
+    50% { transform: translateY(-7px) translateX(-12px); }
+    75% { transform: translateY(12px) translateX(6px); }
+    100% { transform: translateY(0px) translateX(0px); }
+  }
+
+  @keyframes moon-pulse {
+    0%, 100% { transform: scale(1) rotate(-5deg); filter: drop-shadow(0 0 25px rgba(250, 204, 21, 0.85)) drop-shadow(0 0 40px rgba(234, 179, 8, 0.5)); }
+    50% { transform: scale(1.08) rotate(5deg); filter: drop-shadow(0 0 45px rgba(250, 204, 21, 1)) drop-shadow(0 0 25px rgba(56, 189, 248, 0.8)); }
+  }
+
+  @keyframes meteor-streak {
+    0% { transform: translateX(0) translateY(0) scale(0); opacity: 0; }
+    10% { opacity: 1; transform: scale(1); }
+    80% { opacity: 0.8; }
+    100% { transform: translateX(-500px) translateY(320px) scale(0.1); opacity: 0; }
+  }
+
+  .animate-starry-swirl {
+    animation: starry-swirl 40s linear infinite;
+  }
+
+  .animate-starry-swirl-rev {
+    animation: starry-swirl-reverse 50s linear infinite;
+  }
+
+  .animate-star-twinkle {
+    animation: star-twinkle 3s ease-in-out infinite;
+  }
+
+  .animate-star-float {
+    animation: star-float 9s ease-in-out infinite;
+  }
+
+  .animate-moon-pulse {
+    animation: moon-pulse 5s ease-in-out infinite;
+  }
+
+  .animate-meteor-1 {
+    animation: meteor-streak 7s cubic-bezier(0.4, 0, 0.2, 1) infinite 1s;
+  }
+
+  .animate-meteor-2 {
+    animation: meteor-streak 9s cubic-bezier(0.4, 0, 0.2, 1) infinite 4s;
+  }
+
+  /* Romanticism Realism Oil Painting Background */
+  .romanticism-bg {
+    background-color: #120907;
+    background-image: 
+      radial-gradient(circle at 50% 20%, rgba(217, 119, 6, 0.18) 0%, rgba(180, 83, 9, 0.08) 40%, transparent 70%),
+      radial-gradient(circle at 10% 90%, rgba(153, 27, 27, 0.15) 0%, transparent 50%),
+      linear-gradient(180deg, #100806 0%, #1a0c08 50%, #24110b 100%);
+    background-attachment: fixed;
+  }
+
+  /* Minecraft Pixel Bevel Borders & Textures */
+  .mc-dirt-bg {
+    background-color: #1a120c;
+    background-image: 
+      radial-gradient(#332217 20%, transparent 20%),
+      radial-gradient(#271a10 20%, transparent 20%);
+    background-size: 16px 16px;
+    background-position: 0 0, 8px 8px;
+  }
+
+  .mc-stone-bg {
+    background-color: #2b2b2b;
+    background-image: 
+      radial-gradient(#3d3d3d 15%, transparent 16%),
+      radial-gradient(#212121 15%, transparent 16%);
+    background-size: 12px 12px;
+    background-position: 0 0, 6px 6px;
+  }
+
+  /* Classic Minecraft Bevel Box */
+  .mc-box {
+    border-style: solid;
+    border-width: 4px;
+    border-top-color: #d8d8d8;
+    border-left-color: #d8d8d8;
+    border-bottom-color: #404040;
+    border-right-color: #404040;
+    box-shadow: inset -4px -4px 0px 0px #505050, inset 4px 4px 0px 0px #f0f0f0;
+  }
+
+  .mc-box-dark {
+    border-style: solid;
+    border-width: 4px;
+    border-top-color: #373737;
+    border-left-color: #373737;
+    border-bottom-color: #a8a8a8;
+    border-right-color: #a8a8a8;
+    background-color: #211e1b;
+  }
+
+  /* Minecraft Bevel Button */
+  .mc-button {
+    border-style: solid;
+    border-width: 3px;
+    border-top-color: #adadad;
+    border-left-color: #adadad;
+    border-bottom-color: #373737;
+    border-right-color: #373737;
+    background-color: #707070;
+    color: #ffffff;
+    text-shadow: 2px 2px 0px #000000;
+    transition: all 0.1s ease;
+  }
+
+  .mc-button:hover {
+    background-color: #8b8b8b;
+    border-top-color: #cecece;
+    border-left-color: #cecece;
+  }
+
+  .mc-button:active {
+    border-top-color: #373737;
+    border-left-color: #373737;
+    border-bottom-color: #adadad;
+    border-right-color: #adadad;
+    background-color: #555555;
+    transform: translateY(1px);
+  }
+
+  /* Minecraft Diamond Button */
+  .mc-button-diamond {
+    border-style: solid;
+    border-width: 3px;
+    border-top-color: #a3ffff;
+    border-left-color: #a3ffff;
+    border-bottom-color: #008080;
+    border-right-color: #008080;
+    background-color: #2b8b8b;
+    color: #ffffff;
+    text-shadow: 2px 2px 0px #000000;
+  }
+
+  .mc-button-diamond:hover {
+    background-color: #38aaaa;
+  }
+
+  /* Minecraft Emerald Button */
+  .mc-button-emerald {
+    border-style: solid;
+    border-width: 3px;
+    border-top-color: #8cff8c;
+    border-left-color: #8cff8c;
+    border-bottom-color: #006600;
+    border-right-color: #006600;
+    background-color: #288028;
+    color: #ffffff;
+    text-shadow: 2px 2px 0px #000000;
+  }
+
+  .mc-button-emerald:hover {
+    background-color: #329932;
+  }
+
+  /* Minecraft Inventory Item Slot */
+  .mc-slot {
+    background-color: #8b8b8b;
+    border-style: solid;
+    border-width: 3px;
+    border-top-color: #373737;
+    border-left-color: #373737;
+    border-bottom-color: #ffffff;
+    border-right-color: #ffffff;
+  }
+
+  /* Pixel Text Shadow */
+  .text-pixel-shadow {
+    text-shadow: 2px 2px 0px #000000;
+  }
+
+  .text-pixel-glow {
+    text-shadow: 2px 2px 0px #000000, 0 0 8px currentColor;
+  }
+}
+

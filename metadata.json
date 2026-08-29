@@ -1,0 +1,6 @@
+{
+  "name": "DATN-SD33 KemDenz Release Dashboard",
+  "description": "Comprehensive, interactive Project Release & Patch Management Dashboard for KemDenz Fine Dining Ecosystem",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
