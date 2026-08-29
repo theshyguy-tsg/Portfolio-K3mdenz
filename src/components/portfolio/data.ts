@@ -1,40 +1,40 @@
-// Portfolio data — single source of truth for Landscape Photographer Trần Gia Bảo.
+// Portfolio data — single source of truth for Fullstack Developer Nguyễn Công Khiêm (K3mdenz).
 
 // ==========================================
-// 1. UI TEXT (Curated Photography-focused titles)
+// 1. UI TEXT (Developer & System Architecture-focused)
 // ==========================================
 export const uiText = {
   hero: {
-    sysCode: "[ GALLERY.BAO.TRAN ]",
-    hoverPrompt: "↳ hover the name — behold the dissolving artistic essence.",
-    taglineLabel: "philosophy —",
-    fastJump: "↳ TRAVEL SECTIONS",
+    sysCode: "[ DEV.K3MDENZ.STUDIO ]",
+    hoverPrompt: "↳ hover to interact — discover engineering micro-interactions.",
+    taglineLabel: "engineering mindset —",
+    fastJump: "↳ EXPLORE SECTIONS",
   },
   about: {
     sectionNumber: "[ 01 ]",
-    sectionTitle: "BEHIND THE LENS",
-    aka: "artistic journey",
+    sectionTitle: "CORE PHILOSOPHY & ARCHITECTURE",
+    aka: "engineering journey",
   },
   education: {
     sectionNumber: "[ 02 ]",
-    sectionTitle: "EXHIBITIONS & SALONS",
-    heading1: "CURATED",
-    heading2: "exhibitions & logs",
-    institution: "EXHIBITION / SALON",
-    period: "YEAR",
+    sectionTitle: "ACADEMIC JOURNEY & CREDENTIALS",
+    heading1: "ACADEMIC",
+    heading2: "milestones",
+    institution: "INSTITUTION",
+    period: "PERIOD",
   },
   skills: {
     sectionNumber: "[ 03 ]",
-    sectionTitle: "ARTISTIC DISCIPLINES",
-    heading1: "CAPTURING",
-    heading2: "silent",
-    heading3: "MOMENTS.",
+    sectionTitle: "CORE ENGINEERING DISCIPLINES",
+    heading1: "SYSTEM",
+    heading2: "craftsmanship",
+    heading3: "MASTERY.",
   },
   toolbelt: {
     sectionNumber: "[ 04 ]",
-    sectionTitle: "EQUIPMENT & GEAR",
-    heading1: "GEAR I",
-    heading2: "live",
+    sectionTitle: "TECH STACK & TOOLBELT",
+    heading1: "STACK I",
+    heading2: "build",
     heading3: "WITH.",
   },
   projects: {
@@ -51,134 +51,132 @@ export const uiText = {
   },
   contact: {
     sectionNumber: "[ 06 ]",
-    sectionTitle: "ACQUISITIONS & INQUIRIES",
-    heading1: "LET'S DISCUSS",
-    heading2: "something eternal.",
-    availableFor: "ACQUISITIONS FOR",
-    responseTime: "STUDIO RESPONSE TIME",
+    sectionTitle: "COLLABORATE & CONNECT",
+    heading1: "LET'S BUILD",
+    heading2: "great systems.",
+    availableFor: "OPEN TO OPPORTUNITIES IN",
+    responseTime: "RESPONSE TIME",
     timezone: "ACTIVE REGION",
-    currently: "CURRENT EXPEDITION",
+    currently: "CURRENT FOCUS",
   },
   footer: {
-    version: "v2.0 — EARTH & LIGHT",
-    location: "BASE COORDINATES",
-    signal: "ATMOSPHERE",
-    signalValue: "● CALM AIR · DYNAMIC RANGE 15EV",
+    version: "v2.0 — MONOREPO & HIGH PERFORMANCE",
+    location: "BASE",
+    signal: "SYSTEM STATUS",
+    signalValue: "● ALL SYSTEMS OPERATIONAL · 60FPS",
     backToTop: "BACK TO THE SKY ↑",
-    forgedIn: "CRAFTED IN VITE × TANSTACK",
-    quotePrefix: "CAPTURED BY",
-    quoteSuffix: "— CHASING MISTS, COMMUNING WITH THE SOLEMN WILDERNESS.",
+    forgedIn: "CRAFTED IN REACT 19 × TANSTACK × TAILWIND",
+    quotePrefix: "ENGINEERED BY",
+    quoteSuffix: "— CRAFTING ROBUST MONOREPOS, REAL-TIME ENGINES & IMMERSIVE EXPERIENCES.",
     madeIn: "MADE IN VIETNAM 🇻🇳",
     endOfTransmission: "END OF TRANSMISSION",
-    cvLabel: "ARTISTIC DOSSIER",
-    cvCaption: "PDF · Curated Portfolio Book · 2026 Edition",
-    cvView: "VIEW DIGITAL BOOK ↗",
+    cvLabel: "ENGINEERING DOSSIER",
+    cvCaption: "PDF · Fullstack Engineer Portfolio · 2026 Edition",
+    cvView: "VIEW RESUME ↗",
     cvUrl: "/portfolio-book.pdf",
   }
 } as const;
 
 // ==========================================
-// 2. PROFILE (Trần Gia Bảo Photographer Profile)
+// 2. PROFILE (Nguyễn Công Khiêm - K3mdenz Profile)
 // ==========================================
 export const profile = {
-  handle: "@giabaophotography",
-  name: "BAO TRAN",
-  realName: "Trần Gia Bảo",
-  greeting: "Chasing dawn, capturing",
-  role: "LANDSCAPE PHOTOGRAPHER · FINE ARTIST",
-  location: "Da Lat Plateau · Vietnam",
-  status: "GIABAO.STUDIO",
-  tagline: "I capture the solemn silence between the winds.",
-  bio: "Nhiếp ảnh gia phong cảnh nghệ thuật hoạt động tại các vùng cao nguyên và biển cả Việt Nam. Tập trung khai thác vẻ đẹp nguyên sơ của đất trời vào thời điểm giao hòa của ánh sáng (Golden Hour & Blue Hour).",
+  handle: "@k3mdenz",
+  name: "K3MDENZ",
+  realName: "Nguyễn Công Khiêm",
+  greeting: "Engineering scalable architectures &",
+  role: "FULLSTACK DEVELOPER · SOFTWARE ENGINEER",
+  location: "Hanoi · Vietnam",
+  status: "K3MDENZ.STUDIO",
+  tagline: "I architect scalable backends and craft high-fidelity interactive web apps.",
+  bio: "Kỹ sư phần mềm & Fullstack Developer tốt nghiệp FPT Polytechnic (Đồ án tốt nghiệp DATN-SD33). Chuyên sâu xây dựng kiến trúc Monorepo hiệu năng cao (Spring Boot, React, Redis, PostgreSQL), giải quyết bài toán khóa phân tán chống Race Condition và kiến tạo trải nghiệm Web tương tác thời gian thực (Real-time).",
   quote:
-    "Thiên nhiên không bao giờ vội vã, nhưng mọi thứ đều được hoàn thành. Đứng trước một thung lũng sương mù dày đặc ở Đà Lạt hay những vách núi hùng vĩ vùng Đông Bắc, tôi học được sự kiên nhẫn tối cùng. Có những ngày đi bộ hàng chục cây số chỉ để đợi một tia nắng xuyên qua mây trong vài giây ngắn ngủi. Đó không chỉ là việc chụp ảnh, đó là cuộc đối thoại lặng lẽ giữa tâm hồn và đất trời.",
-  goal: "MỞ TRIỂN LÃM ĐƠN ĐỘC VỀ SƯƠNG MÙ VIỆT NAM.",
-  email: "giabaophotography@gmail.com",
+    "Một dòng code tốt không chỉ chạy đúng trong điều kiện lý tưởng, mà phải kiên cường trước tải cao và các tình huống cạnh tranh dữ liệu (Race Conditions). Từ hệ sinh thái Monorepo Enterprise cho tới các giao diện 3D tương tác mượt mà, tôi luôn đặt sự tối ưu hiệu năng và trải nghiệm người dùng lên hàng đầu.",
+  goal: "KIẾN TẠO HỆ THỐNG ENTERPRISE TẢI CAO & TRẢI NGHIỆM WEB TƯƠNG TÁC ĐỈNH CAO.",
+  email: "Khiemncth03021@fpt.edu.vn",
   socials: [
-    { label: "MAIL · INQUIRY", handle: "giabaophotography@gmail.com", href: "mailto:giabaophotography@gmail.com", status: "FINE ART PLATES", dot: "neon", cta: "→ email studio" },
-    { label: "INSTAGRAM", handle: "@giabao.lens", href: "#", status: "ATMOSPHERIC FEED", dot: "cyan", cta: "→ view plates" },
-    { label: "500PX", handle: "/giabaotran", href: "#", status: "VERIFIED ARTIST", dot: "lime", cta: "→ see scores" },
-    { label: "FACEBOOK", handle: "/trangiabao.photo", href: "#", status: "PERSONAL SPACE", dot: "cyan", cta: "→ add friend" },
-    { label: "BEHANCE", handle: "/giabaophotography", href: "#", status: "HIGH RES SHOTS", dot: "lime", cta: "→ see portfolio" },
+    { label: "EMAIL · CONTACT", handle: "Khiemncth03021@fpt.edu.vn", href: "mailto:Khiemncth03021@fpt.edu.vn", status: "ACTIVE INBOX", dot: "neon", cta: "→ send email" },
+    { label: "GITHUB", handle: "theshyguy-tsg", href: "https://github.com/theshyguy-tsg", status: "OPEN SOURCE", dot: "cyan", cta: "→ view repos" },
+    { label: "LIVE DOMAIN", handle: "k3mdenz.site", href: "https://k3mdenz.site", status: "DATN ONLINE", dot: "lime", cta: "→ visit site" },
+    { label: "FACEBOOK", handle: "/k3mdenz", href: "#", status: "PERSONAL SPACE", dot: "cyan", cta: "→ add friend" },
+    { label: "LINKEDIN", handle: "/in/k3mdenz", href: "#", status: "PROFESSIONAL", dot: "lime", cta: "→ connect" },
   ],
   contactMeta: {
-    responseTime: "< 12 HOURS",
-    timezone: "GMT+7 · Da Lat & Da Nang",
-    currently: "EXPLORING DONG VAN RIDGE",
-    availableFor: ["FINE ART PRINT SALES", "COMMERCIAL EXPEDITIONS", "LANDSCAPE WORKSHOPS", "EDITORIAL ASSIGNMENTS", "COFFEE CHAT"],
+    responseTime: "< 2 HOURS",
+    timezone: "GMT+7 · Hanoi, Vietnam",
+    currently: "DEVELOPING NEXT-GEN ENTERPRISE PLATFORMS",
+    availableFor: ["FULLSTACK ROLES", "ENTERPRISE MONOREPO", "REAL-TIME SYSTEMS", "FRONTEND ARCHITECTURE", "TECH CONSULTING"],
   },
 } as const;
 
 // ==========================================
-// 3. ABOUT DATA (Behind The Lens Pillars)
+// 3. ABOUT DATA (Engineering Pillars)
 // ==========================================
 export const aboutData = {
   main: {
-    label: "CORE MISSION",
-    title: "FINE ART LANDSCAPES",
-    body: "Tập trung tuyệt đối vào nhiếp ảnh phong cảnh fine art. Sử dụng kỹ thuật phơi sáng lâu (long exposure) để làm nổi bật sự tĩnh mịch, trầm mặc và linh thiêng của cảnh sắc nguyên sơ.",
+    label: "BACKEND & MONOREPO",
+    title: "SCALABLE ARCHITECTURE",
+    body: "Làm chủ kiến trúc Monorepo Enterprise với Spring Boot 3, PostgreSQL 16 và Redis 7. Triển khai các thuật toán Distributed Idempotency Lock và AOP Distributed Lock để ngăn chặn tuyệt đối Race Condition và trùng lặp đơn hàng.",
   },
   vibe: {
-    label: "THE HUNT",
-    title: "CHASING THE MISTS",
-    body: "Đam mê mãnh liệt với hiện tượng sương luồn và mây mù. Rong ruổi khắp các đỉnh cao như Y Tý, Tà Xùa, Đà Lạt để lưu lại khoảnh khắc ánh sáng xuyên qua màn sương sớm.",
+    label: "REAL-TIME SYSTEMS",
+    title: "WEBSOCKET & CONCURRENCY",
+    body: "Khai thác sức mạnh STOMP over WebSocket, Supabase Realtime và Redis Pub/Sub để đồng bộ dữ liệu thời gian thực giữa nhiều phân hệ người dùng (Khách hàng, POS Thu ngân, Màn hình Bếp KDS).",
   },
   dev: {
-    label: "PRECISION",
-    title: "EXIF TECHNIQUE",
-    body: "Sự cẩn trọng tuyệt đối trong quy trình bấm máy: đo sáng chính xác thủ công, sử dụng hệ thống kính lọc ND chuyên dụng và quy trình hậu kỳ trung thực trên Capture One Pro.",
+    label: "HIGH-FIDELITY FRONTEND",
+    title: "MICRO-INTERACTIONS & 3D",
+    body: "Tối ưu hóa giao diện người dùng đạt chuẩn 60FPS với React 18/19, TypeScript, Tailwind CSS, Framer Motion và Canvas API. Thiết kế theo triết lý Glassmorphism và sơ đồ 2D tương tác thông minh.",
   },
 } as const;
 
 // ==========================================
-// 4. EDUCATION DATA -> EXHIBITIONS DATA
+// 4. EDUCATION DATA (Academic Journey)
 // ==========================================
 export const educationData = {
-  school: "VIETNAM PHOTO ART ASSOCIATION",
-  major: "LANDSCAPE & FINE ART RESEARCH",
-  period: "2023 — PRESENT",
+  school: "FPT POLYTECHNIC",
+  major: "SOFTWARE ENGINEERING · DATN-SD33",
+  period: "2022 — 2026",
   blocks: [
-    { tag: "EXHIBITIONS", items: ["Echoes of Silence (2025 - Da Lat)", "Chasing the Mist (2024 - HCMC)", "Vietnam Heritage Art Exhibition"] },
-    { tag: "PUBLICATIONS", items: ["Heritage Magazine Editorial", "Vietnam Visual Arts Journal", "The Wanderer Photo Annual"] },
-    { tag: "CORE TECHNIQUES", items: ["Long Exposure (30s+)", "High Dynamic Range Calibration", "Panoramic Stitched Plates", "Focus Stacking"] },
-    { tag: "FAVORITE REGIONS", items: ["Ha Giang Ridge", "Y Ty Terraces", "Phu Yen Volcano Coast", "Da Lat Pine Valleys"] },
-    { tag: "PRINT ARCHIVE", items: ["Hahnemühle FineArt Rag Paper", "Epson Ultrachrome Archival Pigment", "Limited Certified Signatures"] },
+    { tag: "GRADUATION CAPSTONE", items: ["Đồ án Tốt nghiệp DATN-SD33: Hệ thống Buffet Booking Chuỗi KemDenz", "Bảo vệ Đồ án đạt xuất sắc với 10 Thuật toán Cốt lõi", "Kiến trúc 5 Phân hệ Portals Monorepo"] },
+    { tag: "CORE BACKEND & DB", items: ["Java 17 / Spring Boot 3.2 Enterprise", "PostgreSQL 16 & Redis 7 Distributed Cache", "Flyway DB Database Migration (V1 → V41)", "Spring Security RBAC & JWT Authentication"] },
+    { tag: "FRONTEND & REALTIME", items: ["React 18/19, TypeScript, Vite, TanStack", "STOMP over WebSocket & Redis Pub/Sub", "Framer Motion & Canvas 2D Spatial Engines"] },
+    { tag: "DEV TOOLS & DEVOPS", items: ["Docker & Docker Compose Containerization", "Git / GitHub Monorepo Workflow", "Cloudflare Pages & Vercel Edge Deployment"] },
   ],
 } as const;
 
 // ==========================================
-// 5. SKILLS DATA -> DISCIPLINES DATA
+// 5. SKILLS DATA (Core Disciplines)
 // ==========================================
 export const skillsData = [
   {
     code: "01",
-    title: "ATMOSPHERIC TRACKING",
-    body: "Đọc bản đồ thời tiết, dự báo hướng gió và độ ẩm để xác định chính xác thời điểm sương mù bồng bềnh và mây tràn thung lũng.",
+    title: "SYSTEM ARCHITECTURE & CONCURRENCY",
+    body: "Thiết kế kiến trúc Monorepo Enterprise, xử lý tải cao, khóa phân tán Redis chống Race Condition và đảm bảo tính Idempotency cho các luồng thanh toán / đặt bàn.",
     level: 96,
   },
   {
     code: "02",
-    title: "COMPOSITION MATRIX",
-    body: "Làm chủ các quy tắc bố cục cổ điển: tỷ lệ vàng, đường dẫn hướng, tương phản hình khối và đóng khung tự nhiên để tạo cảm xúc sâu lắng.",
-    level: 93,
+    title: "REAL-TIME MULTI-PORTAL SYNC",
+    body: "Đồng bộ trạng thái tức thì giữa nhiều phân hệ người dùng (Khách hàng, Thu ngân POS, Nhà bếp KDS) qua giao thức WebSocket STOMP và Redis Pub/Sub.",
+    level: 94,
   },
   {
     code: "03",
-    title: "CHROMATIC HARMONY",
-    body: "Khả năng cân bằng màu sắc trung thực tuyệt vời. Phát triển dải tone be ấm, kem nhã nhặn như tranh lụa thủy mặc phương Đông.",
-    level: 89,
+    title: "HIGH-FIDELITY UI/UX & GRAPHICS",
+    body: "Kiến tạo giao diện hiện đại mượt mà với React, Framer Motion, hiệu ứng hạt ánh sáng, sơ đồ tầng 2D tương tác và đồ họa 3D Parallax chân thực.",
+    level: 92,
   },
 ] as const;
 
 // ==========================================
-// 6. TOOLBELT DATA -> PHOTOGRAPHY GEAR
+// 6. TOOLBELT DATA (Developer Tech Stack)
 // ==========================================
 export const toolbeltData = [
-  "Sony a7R V", "Hasselblad X2D 100C", "FE 16-35mm f/2.8 GM II",
-  "FE 24-70mm f/2.8 GM II", "FE 70-200mm f/4 G OSS II", "Hasselblad XCD 38mm f/2.5",
-  "DJI Mavic 3 Pro Cine", "Gitzo Systematic Carbon Tripod", "Nisi V7 Filter System",
-  "ND 10-Stop Filter", "GND 3-Stop Graduated Filter", "Capture One Pro 23",
-  "Adobe Lightroom Classic", "Epson SureColor P9000", "Hahnemühle Photo Rag",
+  "Java 17", "Spring Boot 3.2", "React 19", "TypeScript", "PostgreSQL 16",
+  "Redis 7", "WebSocket STOMP", "Tailwind CSS v4", "TanStack Router",
+  "Framer Motion", "Docker", "Flyway DB", "Vite", "Supabase", "Git / GitHub",
+  "Spring Security", "Cloudflare Workers", "Vercel Edge",
 ] as const;
 
 // ==========================================

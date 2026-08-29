@@ -12,20 +12,20 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Trần Gia Bảo — Landscape Photographer & Visual Artist" },
+      { title: "Nguyễn Công Khiêm (K3mdenz) — Fullstack Developer & Software Engineer" },
       {
         name: "description",
         content:
-          "Portfolio nhiếp ảnh nghệ thuật của Trần Gia Bảo. Khám phá vẻ đẹp nguyên sơ của thung lũng sương mù Đà Lạt, ruộng bậc thang Y Tý và sóng biển Phú Yên.",
+          "Portfolio của Nguyễn Công Khiêm (K3mdenz). Khám phá Đồ án tốt nghiệp DATN-SD33 KemDenz Buffet, hệ thống Monorepo, Web-app thời gian thực và các dự án tương tác cao cấp.",
       },
-      { property: "og:title", content: "Trần Gia Bảo — Landscape Photographer" },
+      { property: "og:title", content: "Nguyễn Công Khiêm (K3mdenz) — Fullstack Developer" },
       {
         property: "og:description",
-        content: "Chasing dawn, capturing the solemn silence between the winds. Fine art landscape prints.",
+        content: "Engineering scalable backend architectures & crafting high-fidelity interactive web apps.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "theme-color", content: "#5d4e43" },
+      { name: "theme-color", content: "#0d0d0d" },
     ],
   }),
 });

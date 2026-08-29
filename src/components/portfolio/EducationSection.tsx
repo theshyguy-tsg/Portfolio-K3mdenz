@@ -3,6 +3,7 @@ import { educationData, uiText, fxConfig } from "./data";
 import { cardEntrance, lensFocusEntrance, slideRight, stagger, viewportOnce } from "./motion-presets";
 import { AnimWord } from "./AnimWord";
 import { useHoverEffect } from "@/hooks/useHoverEffect";
+import { FptLogo } from "./FptLogo";
 
 type Block = (typeof educationData.blocks)[number];
 
@@ -30,32 +31,6 @@ function BlockCard({ block, i }: { block: Block; i: number }) {
   );
 }
 
-function ApertureLogo({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 100 100"
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="50" cy="50" r="45" strokeDasharray="3 3" className="opacity-40" />
-      <circle cx="50" cy="50" r="30" />
-      {/* Aperture blades */}
-      <line x1="50" y1="20" x2="65" y2="40" />
-      <line x1="65" y1="40" x2="80" y2="50" />
-      <line x1="80" y1="50" x2="65" y2="70" />
-      <line x1="65" y1="70" x2="50" y2="80" />
-      <line x1="50" y1="80" x2="35" y2="60" />
-      <line x1="35" y1="60" x2="20" y2="50" />
-      <line x1="20" y1="50" x2="35" y2="30" />
-      <line x1="35" y1="30" x2="50" y2="20" />
-    </svg>
-  );
-}
-
 export function EducationSection() {
   const fxHeader = useHoverEffect<HTMLDivElement>(fxConfig.educationHeader);
   return (
@@ -80,7 +55,7 @@ export function EducationSection() {
         </motion.h2>
       </motion.div>
 
-      {/* Photographer stamp card */}
+      {/* Academic stamp card */}
       <motion.div
         variants={lensFocusEntrance}
         onMouseEnter={fxHeader.onMouseEnter}
@@ -95,20 +70,10 @@ export function EducationSection() {
           style={{ background: "var(--gradient-aurora)" }}
         />
 
-        {/* Watermark logo — bottom-right, very subtle */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-10 -bottom-12 w-72 opacity-[0.05] transition-opacity duration-500 group-hover:opacity-[0.10] sm:w-96 text-primary"
-        >
-          <ApertureLogo />
-        </div>
-
         <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           {/* Full official logo + meta */}
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
-            <ApertureLogo
-              className="h-20 w-auto shrink-0 sm:h-24 text-primary"
-            />
+            <FptLogo className="h-16 w-auto shrink-0 sm:h-20" />
             <div className="min-w-0 space-y-2">
               <div className="flex flex-wrap items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
                 <span>{uiText.education.institution}</span>
@@ -125,13 +90,13 @@ export function EducationSection() {
                     animate={{ opacity: [1, 0.3, 1] }}
                     transition={{ duration: 1.6, repeat: Infinity }}
                   />
-                  ACTIVE RESIDENCY
+                  ACTIVE ALUMNI / GRADUATE
                 </span>
               </div>
               <div
                 className="font-mono text-sm uppercase tracking-wider sm:text-base text-primary font-bold"
               >
-                ↳ {educationData.school}
+                ↳ {educationData.school} — {educationData.major}
               </div>
             </div>
           </div>
