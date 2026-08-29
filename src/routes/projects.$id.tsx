@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { projectsData } from "@/components/portfolio/data";
@@ -148,6 +148,30 @@ function ProjectDetailPage() {
               >
                 TRUY CẬP BẢN THỬ NGHIỆM ↗
               </a>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Database Migration / Paused Notice (for Dating App & Spin-Quizz) */}
+        {project.dbNotice && (
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="my-6 overflow-hidden rounded-2xl border border-sky-400/30 bg-sky-500/10 p-5 sm:p-6 backdrop-blur"
+          >
+            <div className="flex items-start gap-3">
+              <span className="text-xl shrink-0">☁️</span>
+              <div className="space-y-1">
+                <div className="font-mono text-xs font-bold uppercase tracking-widest text-sky-400">
+                  THÔNG BÁO HẠ TẦNG DATABASE (SUPABASE FREE-TIER MIGRATION)
+                </div>
+                <p className="text-xs sm:text-sm text-foreground/90 font-sans leading-relaxed">
+                  {project.dbNotice}
+                </p>
+                <div className="pt-2 font-mono text-[11px] text-muted-foreground">
+                  ↳ Trạng thái hiện tại: <span className="text-sky-300 font-bold">{project.statusText}</span>
+                </div>
+              </div>
             </div>
           </motion.div>
         )}

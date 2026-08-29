@@ -307,43 +307,50 @@ export const projectsData = [
     name: "DATING APP (CỔNG KHẾ ƯỚC)",
     subtitle: "Động cơ Dựng & Trải Nghiệm Kịch Bản Hẹn Hò Tương Tác Cặp Đôi",
     year: "2026",
-    status: "SHIPPED · LIVE",
-    statusText: "Đã triển khai chính thức",
-    progressPercent: 100,
-    currentPhase: "Vận hành ổn định & mở rộng kịch bản",
+    status: "DATABASE MIGRATION · OFFLINE DEMO",
+    statusText: "Database Supabase tạm ngưng gói Free — Đang migrate sang PostgreSQL Self-hosted",
+    progressPercent: 95,
+    currentPhase: "Client UI & Offline mode hoạt động — Đang chuyển giao Backend DB sang PostgreSQL",
+    dbNotice:
+      "Cơ sở dữ liệu Supabase của dự án này hiện đang tạm dừng do chính sách gói miễn phí và đang trong kế hoạch chuyển dịch sang cụm PostgreSQL / Docker tự host. Bạn vẫn có thể mở Web để trải nghiệm giao diện Client-side, Flow kịch bản hẹn hò và lưu trữ ảnh IndexedDB.",
     type: "CINEMATIC VISUAL NOVEL · DATE ENGINE",
-    deploy: "NETLIFY HOSTED",
+    deploy: "NETLIFY (OFFLINE DEMO)",
     deployUrl: "https://statuesque-kashata-23f0cd.netlify.app/",
     layout: "preview",
     preview: "/images/restaurant_interior.png",
     bannerImage: "/images/restaurant_interior.png",
     about:
-      "Dating app cá nhân — Động cơ Dựng & Trải Nghiệm Kịch Bản Hẹn Hò Tương Tác cho Cặp đôi theo mô hình Creator-Player qua 4 Phase điện ảnh (Cinematic). Flow swipe-to-match, Live Preview 2 chiều qua postMessage, đồng bộ thời gian thực Supabase Realtime, bộ trắc nghiệm Tarot và lưu trữ ảnh check-in IndexedDB.",
+      "Dating app cá nhân — Động cơ Dựng & Trải Nghiệm Kịch Bản Hẹn Hò Tương Tác cho Cặp đôi theo mô hình Creator-Player qua 4 Phase điện ảnh (Cinematic). Flow swipe-to-match, Live Preview 2 chiều qua postMessage, đồng bộ thời gian thực Supabase Realtime (hiện đang migrate), bộ trắc nghiệm Tarot và lưu trữ ảnh check-in IndexedDB.",
     problemStatement:
       "Các cặp đôi thường gặp khó khăn trong việc lên ý tưởng hẹn hò và lưu giữ kỷ niệm tương tác một cách ý nghĩa, sống động.",
     solutionArchitecture:
       "Mô hình Creator-Player cho phép 1 người thiết kế kịch bản và đối phương tham gia giải đố, mở khóa quà tặng và lưu ảnh kỷ niệm.",
     technicalHighlights: [
       {
-        tag: "REALTIME",
-        title: "Supabase Realtime Sync",
-        details: ["Đồng bộ tiến độ giữa 2 thiết bị người chơi với độ trễ thấp.", "Kênh trao đổi tin nhắn mật mã bí mật."],
+        tag: "OFFLINE STORAGE",
+        title: "IndexedDB Client Cache & Storage",
+        details: ["Lưu trữ toàn bộ ảnh chụp check-in và kịch bản hẹn hò trực tiếp tại máy client.", "Hoạt động mượt mà kể cả khi ngắt kết nối mạng."],
       },
       {
         tag: "ANIMATION",
         title: "Framer Motion 4-Phase Transition",
         details: ["Hiệu ứng chuyển cảnh điện ảnh 60FPS.", "Tích hợp âm thanh SFX và xúc giác."],
       },
+      {
+        tag: "MIGRATION PLAN",
+        title: "Kế hoạch Migrate sang Self-hosted PostgreSQL",
+        details: ["Chuyển đổi schema Supabase sang PostgreSQL 16 thuần.", "Xây dựng WebSocket Gateway bằng Spring Boot thay thế Supabase Realtime."],
+      },
     ],
     roadmap: [
       { phase: "PHASE 01", title: "Thiết kế kịch bản 4 Phase", done: true, desc: "Xây dựng luồng Creator & Player." },
-      { phase: "PHASE 02", title: "Tích hợp Supabase & IndexedDB", done: true, desc: "Lưu trữ dữ liệu và ảnh offline." },
-      { phase: "PHASE 03", title: "Deploy Netlify", done: true, desc: "Phát hành chính thức." },
+      { phase: "PHASE 02", title: "Tích hợp Client Storage IndexedDB", done: true, desc: "Lưu trữ dữ liệu và ảnh offline." },
+      { phase: "PHASE 03", title: "Migrate Database sang Self-Hosted PostgreSQL", done: false, desc: "Chuyển giao hạ tầng database độc lập sau khi Supabase ngưng hỗ trợ gói Free." },
     ],
     gallery: [
       { title: "Giao diện Hẹn Hò Điện Ảnh", image: "/images/restaurant_interior.png", caption: "Không gian trải nghiệm hẹn hò bí ẩn và lãng mạn." },
     ],
-    stack: ["React 18", "Tailwind CSS", "Framer Motion", "Supabase", "IndexedDB", "Netlify"],
+    stack: ["React 18", "Tailwind CSS", "Framer Motion", "IndexedDB", "PostgreSQL (Migrating)", "Netlify"],
   },
   {
     id: "p02",
@@ -352,22 +359,24 @@ export const projectsData = [
     name: "SPIN-QUIZZ (THE KINETIC ROULETTE)",
     subtitle: "Web-game Vòng Quay May Mắn & Thử Thách Trắc Nghiệm Realtime",
     year: "2026",
-    status: "SHIPPED · LIVE",
-    statusText: "Đã triển khai chính thức",
-    progressPercent: 100,
-    currentPhase: "Vận hành multiplayer ổn định",
+    status: "OFFLINE MODE · SUPABASE PAUSED",
+    statusText: "Room Realtime Supabase tạm ngưng — Hỗ trợ chơi Offline / Single Player",
+    progressPercent: 95,
+    currentPhase: "Canvas Engine & Chế độ chơi Đơn mượt mà — Đang nâng cấp WebSocket tự host",
+    dbNotice:
+      "Hạ tầng phòng chơi Realtime Supabase hiện đang tạm ngưng do hết hạn gói hỗ trợ. Người dùng vẫn có thể trải nghiệm trọn vẹn chế độ Chơi Đơn (Single Player), tương tác thẻ bài 3D Parallax và giải thuật Spring Physics trên Canvas.",
     type: "REAL-TIME GAME · 3D CARDS & QUIZ",
-    deploy: "VERCEL HOSTED",
+    deploy: "VERCEL (OFFLINE MODE)",
     deployUrl: "https://spin-ran-dom.vercel.app",
     layout: "preview",
     preview: "/images/luxury_floor_plan.png",
     bannerImage: "/images/luxury_floor_plan.png",
     about:
-      "Nền tảng trò chơi vòng quay may mắn kết hợp trả lời câu hỏi hỗ trợ Multiplayer (Supabase room system). Người chơi có thể tạo phòng bằng custom code, cấu hình vòng quay linh hoạt cùng kho câu hỏi đa dạng không lặp lại. Spring Easing với hệ số động học thích ứng từ server real-time, thẻ bài 3D Parallax mượt mà không bao giờ rớt 60FPS.",
+      "Nền tảng trò chơi vòng quay may mắn kết hợp trả lời câu hỏi hỗ trợ chế độ chơi Đơn và Multiplayer. Spring Easing với hệ số động học thích ứng từ Canvas API, thẻ bài 3D Parallax mượt mà không bao giờ rớt 60FPS.",
     problemStatement:
       "Các mini-game vòng quay thông thường thường đơn điệu, thiếu tính tương tác trực tiếp nhiều người chơi và vật lý quay không chân thực.",
     solutionArchitecture:
-      "Kết hợp Canvas Physics Engine mô phỏng lực ma sát & quán tính thật với Supabase Room Protocol để kết nối phòng chơi 2-10 người.",
+      "Kết hợp Canvas Physics Engine mô phỏng lực ma sát & quán tính thật với thuật toán Random cân bằng xác suất.",
     technicalHighlights: [
       {
         tag: "PHYSICS",
@@ -375,20 +384,20 @@ export const projectsData = [
         details: ["Vòng quay dừng lại tự nhiên theo hàm giảm chấn vật lý.", "Bộ hiệu ứng hạt Canvas Confetti khi trúng thưởng."],
       },
       {
-        tag: "MULTIPLAYER",
-        title: "Lobby Room Code Realtime",
-        details: ["Tạo và tham gia phòng qua mã PIN 6 số tức thì.", "Đồng bộ điểm số và lượt quay trực tiếp."],
+        tag: "3D CARDS",
+        title: "3D Parallax Card Interaction",
+        details: ["Thẻ bài 3D phản hồi theo góc di chuột chuẩn 60FPS.", "Kho câu hỏi tương tác phong phú."],
       },
     ],
     roadmap: [
       { phase: "PHASE 01", title: "Thuật toán Vòng quay Canvas", done: true, desc: "Xây dựng engine quay vật lý thật." },
-      { phase: "PHASE 02", title: "Multiplayer Room System", done: true, desc: "Đồng bộ phòng chơi qua Supabase." },
-      { phase: "PHASE 03", title: "Deploy Vercel", done: true, desc: "Phát hành bản Production." },
+      { phase: "PHASE 02", title: "Giao diện Thẻ bài 3D Parallax", done: true, desc: "Tối ưu hóa trải nghiệm người dùng." },
+      { phase: "PHASE 03", title: "Nâng cấp Realtime Gateway mới", done: false, desc: "Tích hợp WebSocket Gateway độc lập thay thế Supabase." },
     ],
     gallery: [
       { title: "Vòng Quay & Thẻ Bài 3D", image: "/images/luxury_floor_plan.png", caption: "Giao diện trò chơi vòng quay và câu hỏi trắc nghiệm." },
     ],
-    stack: ["React 18", "TypeScript", "Framer Motion", "Canvas API", "Supabase Realtime", "Vercel"],
+    stack: ["React 18", "TypeScript", "Framer Motion", "Canvas API", "Vercel"],
   },
 ] as const;
 
