@@ -379,6 +379,15 @@ export const projectsData = [
       "Kết hợp Canvas Physics Engine mô phỏng lực ma sát & quán tính thật với Backend PostgreSQL 16 + WebSocket Server để đồng bộ phòng chơi 2-10 người với độ trễ thấp.",
     technicalHighlights: [
       {
+        tag: "CUSTOM STUDIO",
+        title: "Bộ Biên Tập Vòng Quay & Nội Dung Tự Do (Custom Studio)",
+        details: [
+          "Cho phép người chơi tự tạo ô riêng với Icon/Emoji, màu sắc sắc nét và nội dung thử thách cá nhân hóa.",
+          "Tích hợp sẵn 4 bộ Presets chuyên đề: Cặp Đôi Lãng Mạn, Bàn Nhậu Uống Phạt & Quẩy, Thật Hay Thách 18+, Gắn Kết Teamwork.",
+          "Hỗ trợ Import / Export bộ vòng quay qua định dạng JSON để chia sẻ nhanh cho bạn bè.",
+        ],
+      },
+      {
         tag: "DATABASE & REALTIME",
         title: "PostgreSQL 16 & Native WebSocket Gateway",
         details: ["Hệ thống 4 bảng dữ liệu quản lý phòng, phiên chơi, điểm số và lịch sử quay.", "Kênh truyền tin WebSocket hai chiều phát sóng trạng thái phòng tức thời."],
