@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { projectsData } from "@/components/portfolio/data";
 
-export const Route = createFileRoute("/projects/")({
+export const Route = createFileRoute("/projects/$id")({
   component: ProjectDetailPage,
   head: ({ params }) => {
     const project = projectsData.find((p) => p.slug === params.id || p.id === params.id);
