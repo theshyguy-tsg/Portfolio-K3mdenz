@@ -190,7 +190,7 @@ export const toolbeltData = [
 
 // ==========================================
 // 7. PROJECTS DATA (Dự án cá nhân & Đồ án tốt nghiệp)
-// Khai báo các dự án với đầy đủ chi tiết phục vụ trang chi tiết
+// Khai báo chính xác 100% theo mã nguồn thực tế của từng dự án
 // ==========================================
 export const projectsData = [
   {
@@ -211,94 +211,107 @@ export const projectsData = [
     preview: "/images/hero_seafood_bbq.png",
     bannerImage: "/images/hero_seafood_bbq.png",
     about:
-      "Đồ án tốt nghiệp chuyên ngành Phát triển phần mềm (FPT Polytechnic - Sinh viên: Nguyễn Công Khiêm): Hệ thống Monorepo Đặt bàn & Quản lý Chuỗi Nhà hàng Buffet Chuỗi KemDenz cao cấp. Tích hợp 5 Phân hệ Portals thời gian thực (Customer Portal đặt bàn 2D trực quan, Thu ngân Cashier POS, Màn hình Bếp KDS, Phục vụ Staff Mobile, Admin Command Center), vận hành 10 thuật toán cốt lõi xử lý tải cao, khóa phân tán Redis chống Race Condition đặt trùng bàn và WebSocket STOMP. Website hiện đang hoạt động phiên bản thử nghiệm trực tiếp tại k3mdenz.site.",
+      "Đồ án tốt nghiệp Chuyên ngành Phát triển phần mềm (FPT Polytechnic - Sinh viên: Nguyễn Công Khiêm, Mã SV: SD33): Hệ thống Monorepo Đặt bàn & Quản lý Chuỗi Nhà hàng Buffet KemDenz. Tích hợp 5 Phân hệ Portals vận hành trên cùng Monorepo (Customer Portal đặt bàn 2D, Cashier POS thu ngân, KDS Kitchen Display màn hình bếp, Staff Mobile phục vụ, Admin Command Center), CSDL PostgreSQL 16 quản lý qua 41 migration Flyway, Redis 7 (khóa phân tán SETNX & Rate limit), STOMP over WebSocket và Apache POI kết xuất báo cáo Excel.",
     problemStatement:
-      "Trong các chuỗi nhà hàng buffet quy mô lớn, bài toán khó nhất là tình trạng nghẽn cổ chai khi hàng trăm khách hàng cùng lúc chọn bàn vào giờ cao điểm, dẫn đến xung đột dữ liệu (Race Condition đặt trùng bàn), cũng như việc đồng bộ chậm trễ giữa khách gọi món, thu ngân POS và đầu bếp KDS làm gián đoạn quy trình phục vụ.",
+      "Mô hình chuỗi nhà hàng Buffet có đặc thù tỷ lệ lấp đầy dồn vào khung giờ cao điểm (18:00 - 20:30), gây nghẽn luồng dữ liệu khi hàng trăm khách cùng bấm chọn 1 vị trí bàn đẹp dẫn đến Race Condition (đặt trùng bàn / overbooking). Đồng thời, sự thiếu đồng bộ tức thời giữa khách gọi món, thu ngân POS và đầu bếp KDS làm tăng thời gian chờ và thất thoát đơn.",
     solutionArchitecture:
-      "Xây dựng kiến trúc Monorepo Enterprise đa tầng với Spring Boot 3.2 làm Backend Core, PostgreSQL 16 + Redis 7 làm cơ sở dữ liệu & bộ nhớ đệm phân tán. Triển khai thuật toán Distributed Idempotency Lock qua Redis SETNX và AOP Aspect để cô lập tuyệt đối luồng thanh toán / giữ chỗ, kết hợp STOMP over WebSocket để phát sóng biến động trạng thái bàn & đơn món tức thời dưới 20ms.",
+      "Xây dựng kiến trúc Monorepo chuẩn Enterprise với Backend Spring Boot 3.2.4 (Java 17) + PostgreSQL 16 + Redis 7. Triển khai 10 giải thuật cốt lõi: Khóa phân tán Redis SETNX và Spring AOP (@RedisLocked) bảo vệ dữ liệu đặt bàn và điểm K-Points; STOMP over WebSocket phát sóng biến động trạng thái bàn tức thì dưới 20ms; Cửa sổ trượt Redis ZSET giới hạn 30 req/phút chống DDoS; Flyway DB quản lý 41 bảng dữ liệu nhất quán.",
     portals: [
       {
         name: "Customer Portal (Khách hàng)",
-        target: "Web & Mobile Browser",
-        role: "Trải nghiệm Đặt bàn 2D & Đặt món",
-        desc: "Sơ đồ bàn 2D trực quan theo tầng, chọn combo buffet, giữ bàn theo thời gian thực và thanh toán trực tuyến an toàn.",
+        target: "Web & Mobile Browser (apps/customer-portal)",
+        role: "Trải nghiệm Đặt bàn 2D & Đặt cọc online",
+        desc: "Khách hàng chọn chi nhánh, khung giờ, xem sơ đồ tầng 2D trực quan, áp voucher giảm giá, đổi điểm K-Points và thanh toán cọc qua VietQR/PayOS.",
       },
       {
         name: "Cashier POS (Thu ngân)",
-        target: "Desktop / Tablet POS",
-        role: "Quản lý Bàn & Thanh toán hóa đơn",
-        desc: "Giao diện thu ngân tối ưu thao tác nhanh, mở bàn, in hóa đơn VAT, áp dụng voucher khuyến mãi và kết nối cổng thanh toán.",
+        target: "Desktop / Tablet POS (apps/cashier-portal)",
+        role: "Check-in, Mở bàn & Thanh toán hóa đơn",
+        desc: "Giao diện thu ngân tối ưu tốc độ cao, check-in nhận bàn theo mã booking, mở bàn ăn buffet, in hóa đơn VAT và đồng bộ sơ đồ bàn real-time qua WebSocket STOMP.",
       },
       {
-        name: "Kitchen Display System - KDS (Bếp)",
-        target: "Smart Screen / KDS Terminal",
-        role: "Điều phối Đơn chế biến tức thời",
-        desc: "Nhận lệnh gọi món từ khách/nhân viên tức thời qua WebSocket, đếm thời gian chế biến, phân loại món theo line nướng/lẩu/tráng miệng.",
+        name: "Kitchen Display System - KDS (Bếp & Bar)",
+        target: "Smart Screen / Tablet (apps/kds-portal)",
+        role: "Màn hình Bếp điều phối chế biến tức thời",
+        desc: "Hiển thị danh sách món cần chế biến theo thứ tự thời gian đặt thực tế qua WebSocket, phân loại món theo line nướng/lẩu/tráng miệng.",
       },
       {
         name: "Staff Mobile Portal (Phục vụ)",
-        target: "Smartphone App",
-        role: "Order tại bàn & Phục vụ linh hoạt",
-        desc: "Nhân viên kiểm tra trạng thái bàn trống, hỗ trợ khách thêm món hoặc yêu cầu hỗ trợ bàn nhanh chóng.",
+        target: "Smartphone App / Web (apps/staff-portal)",
+        role: "Order tại bàn & Báo dọn bàn",
+        desc: "Nhân viên phục vụ kiểm tra trạng thái bàn trống, hỗ trợ khách gọi thêm món và chuyển trạng thái dọn dẹp bàn (CLEANING).",
       },
       {
         name: "Admin Command Center (Quản trị)",
-        target: "Desktop Admin",
-        role: "Báo cáo & Cấu hình chuỗi nhà hàng",
-        desc: "Biểu đồ phân tích doanh thu, quản lý định lượng kho nguyên liệu, phân quyền tài khoản RBAC và điều phối chi nhánh.",
+        target: "Desktop Admin (apps/admin-portal)",
+        role: "Báo cáo doanh thu & Cấu hình chuỗi",
+        desc: "Dashboard thống kê doanh thu, phân quyền nhân viên RBAC, cấu hình sơ đồ tầng 2D, AI Churn Detector cảnh báo khách VIP rời bỏ và xuất file Excel Apache POI.",
       },
     ],
     technicalHighlights: [
       {
-        tag: "CONCURRENCY",
-        title: "Khóa Phân Tán Redis (Distributed Idempotency Lock)",
+        tag: "ALGORITHM · CONCURRENCY",
+        title: "1. Khóa Phân Tán Redis SETNX & AOP (@RedisLocked)",
         details: [
-          "Sử dụng Redis SETNX với TTL động chống tuyệt đối Race Condition khi 2 khách hàng cùng bấm giữ 1 bàn trong cùng 1 mili-giây.",
-          "Áp dụng Custom Annotation `@RedisLocked` qua Spring AOP giúp mã nguồn sạch đẹp, tự động unlock trong block finally.",
-          "Cơ chế Idempotency Token bảo vệ mọi giao dịch thanh toán không bị trừ tiền trùng lặp.",
+          "Sử dụng Redis SETNX (IdempotencyInterceptor.java) chặn hoàn toàn việc click đúp hoặc gửi lại 2 lần gây đặt trùng bàn hoặc trừ điểm 2 lần.",
+          "Áp dụng Custom Annotation `@RedisLocked` qua Spring AOP (RedisLockAspect.java) khóa nguyên tử theo SpEL expression (Vd: `booking:slot:lock:1:2026-08-10:2`).",
+          "Tự động giải phóng lock an toàn trong block `finally`.",
         ],
       },
       {
-        tag: "REALTIME",
-        title: "Hạ Tầng WebSocket STOMP & Redis Pub/Sub",
+        tag: "ALGORITHM · REALTIME",
+        title: "2. Hạ Tầng WebSocket STOMP & SockJS",
         details: [
-          "Kênh truyền tin 2 chiều STOMP over WebSocket đồng bộ dữ liệu thời gian thực giữa 5 Portals với độ trễ < 20ms.",
-          "Tích hợp Redis Pub/Sub đóng vai trò Message Broker phân tán khi mở rộng quy trình đa server (Clustering).",
-          "Tự động tái kết nối (Heartbeat & Auto Reconnect) khi mạng thiết bị nhân viên chập chờn.",
+          "Kênh truyền tin 2 chiều STOMP over WebSocket đồng bộ dữ liệu thời gian thực giữa 5 Portals với độ trễ < 20ms mà không cần F5 trình duyệt.",
+          "Tự động phát tín hiệu cập nhật màu sắc sơ đồ bàn (AVAILABLE, HOLD, OCCUPIED, CLEANING) tức thì.",
         ],
       },
       {
-        tag: "SPATIAL 2D",
-        title: "Thuật Toán Sơ Đồ Bàn 2D & Định Tuyến Phục Vụ",
+        tag: "ALGORITHM · SECURITY & DDOS",
+        title: "3. Sliding Window Rate Limiting (Redis ZSET) & JWT Blacklist",
         details: [
-          "Mô phỏng sơ đồ kiến trúc mặt bằng nhà hàng bằng SVG Matrix Canvas chuẩn xác tỷ lệ.",
-          "Tính toán trạng thái bàn (Trống, Đang giữ chỗ, Đang dùng bữa, Cần dọn dẹp) theo màu sắc trực quan.",
-          "Hỗ trợ kéo thả bố trí bàn linh hoạt cho quản lý chi nhánh.",
+          "RateLimitingFilter.java sử dụng Redis Sorted Set (ZSET) theo dõi mốc thời gian, giới hạn 30 req/phút trên mỗi IP để ngăn chặn DDoS.",
+          "Cơ chế JWT Blacklist trong Redis vô hiệu hóa Token ngay lập tức khi người dùng bấm Đăng xuất (Logout).",
+        ],
+      },
+      {
+        tag: "ALGORITHM · SAGA & AUTOMATION",
+        title: "4. Saga Workflow Rollback Engine & Auto-Release Scheduler",
+        details: [
+          "BookingWorkflowEngine.java lưu các bước vào Stack LIFO, tự động hoàn tác (nhả bàn, hoàn điểm) nếu bất kỳ bước thanh toán nào bị lỗi.",
+          "TableReleaseScheduler.java chạy định kỳ mỗi 1 phút bằng Redis Lock, tự động hủy đơn giữ tạm quá 15 phút không cọc và giải phóng bàn về AVAILABLE.",
+        ],
+      },
+      {
+        tag: "ALGORITHM · PAYMENT & REPORT",
+        title: "5. Unmatched Payment Ledger & Apache POI Multi-Sheet Export",
+        details: [
+          "Xử lý đối soát Webhook ngân hàng muộn qua bảng `unmatched_payment_ledger`, hỗ trợ thu ngân khớp đơn thủ công hoặc hoàn tiền 1-click.",
+          "ReportServiceImpl.java sử dụng Apache POI `SXSSFWorkbook` kết xuất file Excel .xlsx đa sheet chiến lược (Doanh thu, Gói buffet, Bảng lương).",
         ],
       },
       {
         tag: "DATABASE",
-        title: "Flyway Database Migration (V1 → V41)",
+        title: "6. Flyway DB Migration (V1 ➔ V41) & PostgreSQL 16",
         details: [
-          "Toàn bộ 41 bảng dữ liệu được quản lý phiên bản nghiêm ngặt bằng Flyway Migration.",
+          "Toàn bộ 41 bảng dữ liệu (branches, floors, tables, bookings, users, menu_items, vouchers, audit_logs...) được quản lý phiên bản nghiêm ngặt qua Flyway.",
           "Tự động migrate schema và seed dữ liệu mẫu khi khởi chạy Docker Container.",
-          "Tối ưu Index B-Tree cho các trường tìm kiếm tần suất cao: `booking_time`, `table_id`, `status`.",
         ],
       },
     ],
     roadmap: [
-      { phase: "PHASE 01", title: "Thiết kế CSDL 41 Bảng & Kiến trúc Monorepo", done: true, desc: "Xác lập kiến trúc Spring Boot 3.2, PostgreSQL 16 và phân rã 5 portals." },
-      { phase: "PHASE 02", title: "Phát triển Core API & Khóa phân tán Redis", done: true, desc: "Xây dựng 60+ RESTful APIs, Spring Security JWT và thuật toán khóa bàn." },
-      { phase: "PHASE 03", title: "Xây dựng 5 Giao diện Portals Frontend", done: true, desc: "Hoàn thiện Customer Portal đặt bàn 2D, Cashier POS, KDS Bếp, Staff Mobile & Admin." },
+      { phase: "PHASE 01", title: "Thiết kế CSDL 41 Bảng & Kiến trúc Monorepo", done: true, desc: "Xác lập kiến trúc Spring Boot 3.2.4, PostgreSQL 16 và phân rã 5 apps frontend." },
+      { phase: "PHASE 02", title: "Phát triển Core API & 10 Thuật Toán Cốt Lõi", done: true, desc: "Xây dựng 60+ RESTful APIs, Spring Security JWT, Redis Lock SETNX, Rate Limit và Saga Engine." },
+      { phase: "PHASE 03", title: "Xây dựng 5 Giao diện Portals Frontend", done: true, desc: "Hoàn thiện Customer Portal đặt bàn 2D, Cashier POS, KDS Bếp, Staff Mobile & Admin Center." },
       { phase: "PHASE 04", title: "Deploy Domain k3mdenz.site & Thử nghiệm Beta", done: true, desc: "Đưa hệ thống online trực tiếp, kết nối domain và kiểm thử luồng thực tế." },
-      { phase: "PHASE 05", title: "Stress-Test Tải Cao & Báo Cáo Tốt Nghiệp", done: false, desc: "Kiểm thử tải 1000+ RPS đồng thời, tối ưu 60FPS và chuẩn bị hồ sơ bảo vệ DATN." },
+      { phase: "PHASE 05", title: "Stress-Test Tải Cao & Báo Cáo Tốt Nghiệp", done: false, desc: "Kiểm thử tải đồng thời, tối ưu 60FPS và chuẩn bị hồ sơ bảo vệ DATN-SD33." },
     ],
     gallery: [
       { title: "Customer Portal & Menu", image: "/images/hero_seafood_bbq.png", caption: "Giao diện trang chủ đặt bàn trực tuyến và thực đơn món nướng hải sản cao cấp." },
       { title: "Sơ đồ Tầng 2D Thông minh", image: "/images/luxury_floor_plan.png", caption: "Bản đồ bàn 2D thời gian thực hiển thị trạng thái vị trí bàn theo từng tầng." },
       { title: "Không gian Nhà hàng Sang trọng", image: "/images/restaurant_interior.png", caption: "Mô hình kiến trúc không gian Fine Dining và khu vực quầy buffet line." },
     ],
-    stack: ["Java 17", "Spring Boot 3.2", "React 18", "PostgreSQL 16", "Redis 7", "WebSocket STOMP", "Flyway DB", "Docker", "Tailwind CSS"],
+    stack: ["Java 17", "Spring Boot 3.2.4", "PostgreSQL 16", "Redis 7", "WebSocket STOMP", "Flyway DB", "React 18", "Docker", "Apache POI"],
   },
   {
     id: "p01",
@@ -307,50 +320,51 @@ export const projectsData = [
     name: "DATING APP (CỔNG KHẾ ƯỚC)",
     subtitle: "Động cơ Dựng & Trải Nghiệm Kịch Bản Hẹn Hò Tương Tác Cặp Đôi",
     year: "2026",
-    status: "DATABASE MIGRATION · OFFLINE DEMO",
-    statusText: "Database Supabase tạm ngưng gói Free — Đang migrate sang PostgreSQL Self-hosted",
+    status: "CLIENT OFFLINE MODE · NETLIFY",
+    statusText: "Client UI & Offline Mode hoạt động mượt mà — Backend Supabase cũ tạm ngưng",
     progressPercent: 95,
-    currentPhase: "Client UI & Offline mode hoạt động — Đang chuyển giao Backend DB sang PostgreSQL",
+    currentPhase: "Trải nghiệm Client-side 4 Phase & lưu trữ ảnh IndexedDB hoàn tất",
     dbNotice:
-      "Cơ sở dữ liệu Supabase của dự án này hiện đang tạm dừng do chính sách gói miễn phí và đang trong kế hoạch chuyển dịch sang cụm PostgreSQL / Docker tự host. Bạn vẫn có thể mở Web để trải nghiệm giao diện Client-side, Flow kịch bản hẹn hò và lưu trữ ảnh IndexedDB.",
+      "Database Supabase trước đây của dự án hiện đang tạm ngưng do chính sách gói miễn phí. Ứng dụng hiện hoạt động ở chế độ Client-side / Offline Mode, người dùng có thể trải nghiệm toàn bộ giao diện kịch bản hẹn hò và lưu ảnh qua IndexedDB.",
     type: "CINEMATIC VISUAL NOVEL · DATE ENGINE",
-    deploy: "NETLIFY (OFFLINE DEMO)",
+    deploy: "NETLIFY HOSTED",
     deployUrl: "https://statuesque-kashata-23f0cd.netlify.app/",
     layout: "preview",
     preview: "/images/restaurant_interior.png",
     bannerImage: "/images/restaurant_interior.png",
     about:
-      "Dating app cá nhân — Động cơ Dựng & Trải Nghiệm Kịch Bản Hẹn Hò Tương Tác cho Cặp đôi theo mô hình Creator-Player qua 4 Phase điện ảnh (Cinematic). Flow swipe-to-match, Live Preview 2 chiều qua postMessage, đồng bộ thời gian thực Supabase Realtime (hiện đang migrate), bộ trắc nghiệm Tarot và lưu trữ ảnh check-in IndexedDB.",
+      "Dating app cá nhân — Động cơ Dựng & Trải Nghiệm Kịch Bản Hẹn Hò Tương Tác cho Cặp đôi theo mô hình Creator-Player qua 4 Phase điện ảnh (Cinematic). Flow tương tác trực tiếp, bộ trắc nghiệm Tarot và lưu trữ ảnh check-in qua IndexedDB Client Storage, xây dựng trên nền tảng React 18 và Framer Motion.",
     problemStatement:
       "Các cặp đôi thường gặp khó khăn trong việc lên ý tưởng hẹn hò và lưu giữ kỷ niệm tương tác một cách ý nghĩa, sống động.",
     solutionArchitecture:
-      "Mô hình Creator-Player cho phép 1 người thiết kế kịch bản và đối phương tham gia giải đố, mở khóa quà tặng và lưu ảnh kỷ niệm.",
+      "Mô hình Creator-Player cho phép 1 người thiết kế kịch bản và đối phương tham gia giải đố, mở khóa quà tặng và lưu ảnh kỷ niệm vào IndexedDB.",
     technicalHighlights: [
       {
-        tag: "OFFLINE STORAGE",
+        tag: "CLIENT STORAGE",
         title: "IndexedDB Client Cache & Storage",
-        details: ["Lưu trữ toàn bộ ảnh chụp check-in và kịch bản hẹn hò trực tiếp tại máy client.", "Hoạt động mượt mà kể cả khi ngắt kết nối mạng."],
+        details: [
+          "Lưu trữ toàn bộ ảnh chụp check-in và kịch bản hẹn hò trực tiếp tại trình duyệt client qua IndexedDB.",
+          "Hoạt động mượt mà không bị gián đoạn kể cả khi mất kết nối mạng.",
+        ],
       },
       {
         tag: "ANIMATION",
-        title: "Framer Motion 4-Phase Transition",
-        details: ["Hiệu ứng chuyển cảnh điện ảnh 60FPS.", "Tích hợp âm thanh SFX và xúc giác."],
-      },
-      {
-        tag: "MIGRATION PLAN",
-        title: "Kế hoạch Migrate sang Self-hosted PostgreSQL",
-        details: ["Chuyển đổi schema Supabase sang PostgreSQL 16 thuần.", "Xây dựng WebSocket Gateway bằng Spring Boot thay thế Supabase Realtime."],
+        title: "Framer Motion 4-Phase Cinematic Transition",
+        details: [
+          "Hiệu ứng chuyển cảnh điện ảnh 60FPS giữa 4 Phase kịch bản.",
+          "Tích hợp âm thanh SFX và phản hồi xúc giác.",
+        ],
       },
     ],
     roadmap: [
       { phase: "PHASE 01", title: "Thiết kế kịch bản 4 Phase", done: true, desc: "Xây dựng luồng Creator & Player." },
       { phase: "PHASE 02", title: "Tích hợp Client Storage IndexedDB", done: true, desc: "Lưu trữ dữ liệu và ảnh offline." },
-      { phase: "PHASE 03", title: "Migrate Database sang Self-Hosted PostgreSQL", done: false, desc: "Chuyển giao hạ tầng database độc lập sau khi Supabase ngưng hỗ trợ gói Free." },
+      { phase: "PHASE 03", title: "Deploy Netlify", done: true, desc: "Phát hành bản Client Web." },
     ],
     gallery: [
       { title: "Giao diện Hẹn Hò Điện Ảnh", image: "/images/restaurant_interior.png", caption: "Không gian trải nghiệm hẹn hò bí ẩn và lãng mạn." },
     ],
-    stack: ["React 18", "Tailwind CSS", "Framer Motion", "IndexedDB", "PostgreSQL (Migrating)", "Netlify"],
+    stack: ["React 18", "Tailwind CSS", "Framer Motion", "IndexedDB", "Netlify"],
   },
   {
     id: "p02",
@@ -364,7 +378,7 @@ export const projectsData = [
     progressPercent: 100,
     currentPhase: "Backend PostgreSQL & WebSocket hoàn tất — Hỗ trợ cả Offline Mode lẫn Realtime Server",
     dbNotice:
-      "Dự án đã được trang bị trọn bộ CSDL PostgreSQL 16 (4 bảng chuẩn hóa: spin_rooms, game_sessions, game_scores, game_history), Express REST API và WebSocket Server thời gian thực thay thế hoàn toàn Supabase.",
+      "Dự án đã được trang bị trọn bộ CSDL PostgreSQL 16 (4 bảng chuẩn hóa: spin_rooms, game_sessions, game_scores, game_history), Express REST API, WebSocket Server thời gian thực và Studio tự tạo ô vòng quay.",
     type: "REAL-TIME GAME · 3D CARDS & QUIZ",
     deploy: "VERCEL HOSTED",
     deployUrl: "https://spin-ran-dom.vercel.app",
@@ -372,17 +386,17 @@ export const projectsData = [
     preview: "/images/luxury_floor_plan.png",
     bannerImage: "/images/luxury_floor_plan.png",
     about:
-      "Nền tảng trò chơi vòng quay may mắn kết hợp trả lời câu hỏi hỗ trợ chế độ chơi Đơn và Multiplayer. Sử dụng CSDL PostgreSQL 16 độc lập, Express API, WebSocket kết nối thời gian thực, Spring Easing với hệ số động học thích ứng từ Canvas API, thẻ bài 3D Parallax mượt mà 60FPS.",
+      "Nền tảng trò chơi vòng quay may mắn kết hợp trả lời câu hỏi hỗ trợ chế độ chơi Đơn và Multiplayer. Sử dụng CSDL PostgreSQL 16 độc lập, Express REST API, WebSocket kết nối thời gian thực, Spring Physics Canvas Engine mô phỏng lực ma sát & quán tính thật, thẻ bài 3D Parallax mượt mà 60FPS và Studio cho phép người chơi tự tạo nội dung ô quay riêng.",
     problemStatement:
-      "Các mini-game vòng quay thông thường thường đơn điệu, phụ thuộc vào nền tảng đám mây trả phí và thiếu tính chủ động khi mở rộng tải.",
+      "Các mini-game vòng quay thông thường thường bị gắn cứng nội dung, phụ thuộc vào nền tảng đám mây trả phí và thiếu tính chủ động khi người dùng muốn tùy biến theo các buổi tiệc khác nhau.",
     solutionArchitecture:
-      "Kết hợp Canvas Physics Engine mô phỏng lực ma sát & quán tính thật với Backend PostgreSQL 16 + WebSocket Server để đồng bộ phòng chơi 2-10 người với độ trễ thấp.",
+      "Kết hợp HTML5 2D Canvas Physics Engine mô phỏng chuyển động cơ học mượt mà với Backend Node.js / Express + PostgreSQL 16 + Native WebSocket Server (`ws`) để đồng bộ phòng chơi thời gian thực, kèm Studio cho phép tùy biến toàn diện ô quay.",
     technicalHighlights: [
       {
         tag: "CUSTOM STUDIO",
-        title: "Bộ Biên Tập Vòng Quay & Nội Dung Tự Do (Custom Studio)",
+        title: "Studio Biên Tập & Tùy Chỉnh Vòng Quay Riêng",
         details: [
-          "Cho phép người chơi tự tạo ô riêng với Icon/Emoji, màu sắc sắc nét và nội dung thử thách cá nhân hóa.",
+          "Cho phép người chơi tự tạo ô riêng với Icon/Emoji, màu sắc tùy chọn và nội dung thử thách cá nhân hóa.",
           "Tích hợp sẵn 4 bộ Presets chuyên đề: Cặp Đôi Lãng Mạn, Bàn Nhậu Uống Phạt & Quẩy, Thật Hay Thách 18+, Gắn Kết Teamwork.",
           "Hỗ trợ Import / Export bộ vòng quay qua định dạng JSON để chia sẻ nhanh cho bạn bè.",
         ],
@@ -390,23 +404,32 @@ export const projectsData = [
       {
         tag: "DATABASE & REALTIME",
         title: "PostgreSQL 16 & Native WebSocket Gateway",
-        details: ["Hệ thống 4 bảng dữ liệu quản lý phòng, phiên chơi, điểm số và lịch sử quay.", "Kênh truyền tin WebSocket hai chiều phát sóng trạng thái phòng tức thời."],
+        details: [
+          "Hệ thống 4 bảng dữ liệu (spin_rooms, game_sessions, game_scores, game_history) quản lý phòng chơi, điểm số và nhật ký quay.",
+          "Kênh truyền tin WebSocket hai chiều phát sóng trạng thái phòng tức thời giữa Host và Guest.",
+        ],
       },
       {
-        tag: "PHYSICS",
-        title: "Spring Physics Canvas Engine",
-        details: ["Vòng quay dừng lại tự nhiên theo hàm giảm chấn vật lý.", "Bộ hiệu ứng hạt Canvas Confetti khi trúng thưởng."],
+        tag: "PHYSICS & AUDIO",
+        title: "Spring Physics Canvas Engine & Web Audio SFX",
+        details: [
+          "Vòng quay dừng lại tự nhiên theo hàm giảm chấn vật lý trên HTML5 2D Canvas.",
+          "Hiệu ứng âm thanh cơ học tick pointer và hạt pháo hoa Confetti khi trúng ô đặc biệt.",
+        ],
       },
       {
         tag: "3D CARDS",
         title: "3D Parallax Card Interaction",
-        details: ["Thẻ bài 3D phản hồi theo góc di chuột chuẩn 60FPS.", "Kho câu hỏi tương tác phong phú."],
+        details: [
+          "Thẻ bài 3D phản hồi theo góc di chuột chuẩn 60FPS.",
+          "Kho câu hỏi thử thách và trắc nghiệm tương tác phong phú.",
+        ],
       },
     ],
     roadmap: [
-      { phase: "PHASE 01", title: "Thuật toán Vòng quay Canvas", done: true, desc: "Xây dựng engine quay vật lý thật." },
-      { phase: "PHASE 02", title: "Giao diện Thẻ bài 3D Parallax", done: true, desc: "Tối ưu hóa trải nghiệm người dùng 60FPS." },
-      { phase: "PHASE 03", title: "Xây dựng Backend PostgreSQL & WebSocket", done: true, desc: "Tự chủ hạ tầng CSDL PostgreSQL 16 và máy chủ WebSocket." },
+      { phase: "PHASE 01", title: "Thuật toán Vòng quay Canvas & Physics", done: true, desc: "Xây dựng engine quay vật lý thật và âm thanh SFX." },
+      { phase: "PHASE 02", title: "Giao diện Thẻ bài 3D Parallax & Custom Studio", done: true, desc: "Tối ưu hóa trải nghiệm 60FPS và công cụ tự tạo ô vòng quay." },
+      { phase: "PHASE 03", title: "Xây dựng Backend PostgreSQL & WebSocket", done: true, desc: "Tự chủ hạ tầng CSDL PostgreSQL 16 và máy chủ WebSocket hai chiều." },
     ],
     gallery: [
       { title: "Vòng Quay & Thẻ Bài 3D", image: "/images/luxury_floor_plan.png", caption: "Giao diện trò chơi vòng quay và câu hỏi trắc nghiệm." },
