@@ -359,25 +359,30 @@ export const projectsData = [
     name: "SPIN-QUIZZ (THE KINETIC ROULETTE)",
     subtitle: "Web-game Vòng Quay May Mắn & Thử Thách Trắc Nghiệm Realtime",
     year: "2026",
-    status: "OFFLINE MODE · SUPABASE PAUSED",
-    statusText: "Room Realtime Supabase tạm ngưng — Hỗ trợ chơi Offline / Single Player",
-    progressPercent: 95,
-    currentPhase: "Canvas Engine & Chế độ chơi Đơn mượt mà — Đang nâng cấp WebSocket tự host",
+    status: "DATABASE ACTIVE · POSTGRESQL & WS",
+    statusText: "Đã hoàn thiện CSDL PostgreSQL 16 & WebSocket Gateway độc lập",
+    progressPercent: 100,
+    currentPhase: "Backend PostgreSQL & WebSocket hoàn tất — Hỗ trợ cả Offline Mode lẫn Realtime Server",
     dbNotice:
-      "Hạ tầng phòng chơi Realtime Supabase hiện đang tạm ngưng do hết hạn gói hỗ trợ. Người dùng vẫn có thể trải nghiệm trọn vẹn chế độ Chơi Đơn (Single Player), tương tác thẻ bài 3D Parallax và giải thuật Spring Physics trên Canvas.",
+      "Dự án đã được trang bị trọn bộ CSDL PostgreSQL 16 (4 bảng chuẩn hóa: spin_rooms, game_sessions, game_scores, game_history), Express REST API và WebSocket Server thời gian thực thay thế hoàn toàn Supabase.",
     type: "REAL-TIME GAME · 3D CARDS & QUIZ",
-    deploy: "VERCEL (OFFLINE MODE)",
+    deploy: "VERCEL HOSTED",
     deployUrl: "https://spin-ran-dom.vercel.app",
     layout: "preview",
     preview: "/images/luxury_floor_plan.png",
     bannerImage: "/images/luxury_floor_plan.png",
     about:
-      "Nền tảng trò chơi vòng quay may mắn kết hợp trả lời câu hỏi hỗ trợ chế độ chơi Đơn và Multiplayer. Spring Easing với hệ số động học thích ứng từ Canvas API, thẻ bài 3D Parallax mượt mà không bao giờ rớt 60FPS.",
+      "Nền tảng trò chơi vòng quay may mắn kết hợp trả lời câu hỏi hỗ trợ chế độ chơi Đơn và Multiplayer. Sử dụng CSDL PostgreSQL 16 độc lập, Express API, WebSocket kết nối thời gian thực, Spring Easing với hệ số động học thích ứng từ Canvas API, thẻ bài 3D Parallax mượt mà 60FPS.",
     problemStatement:
-      "Các mini-game vòng quay thông thường thường đơn điệu, thiếu tính tương tác trực tiếp nhiều người chơi và vật lý quay không chân thực.",
+      "Các mini-game vòng quay thông thường thường đơn điệu, phụ thuộc vào nền tảng đám mây trả phí và thiếu tính chủ động khi mở rộng tải.",
     solutionArchitecture:
-      "Kết hợp Canvas Physics Engine mô phỏng lực ma sát & quán tính thật với thuật toán Random cân bằng xác suất.",
+      "Kết hợp Canvas Physics Engine mô phỏng lực ma sát & quán tính thật với Backend PostgreSQL 16 + WebSocket Server để đồng bộ phòng chơi 2-10 người với độ trễ thấp.",
     technicalHighlights: [
+      {
+        tag: "DATABASE & REALTIME",
+        title: "PostgreSQL 16 & Native WebSocket Gateway",
+        details: ["Hệ thống 4 bảng dữ liệu quản lý phòng, phiên chơi, điểm số và lịch sử quay.", "Kênh truyền tin WebSocket hai chiều phát sóng trạng thái phòng tức thời."],
+      },
       {
         tag: "PHYSICS",
         title: "Spring Physics Canvas Engine",
@@ -391,13 +396,13 @@ export const projectsData = [
     ],
     roadmap: [
       { phase: "PHASE 01", title: "Thuật toán Vòng quay Canvas", done: true, desc: "Xây dựng engine quay vật lý thật." },
-      { phase: "PHASE 02", title: "Giao diện Thẻ bài 3D Parallax", done: true, desc: "Tối ưu hóa trải nghiệm người dùng." },
-      { phase: "PHASE 03", title: "Nâng cấp Realtime Gateway mới", done: false, desc: "Tích hợp WebSocket Gateway độc lập thay thế Supabase." },
+      { phase: "PHASE 02", title: "Giao diện Thẻ bài 3D Parallax", done: true, desc: "Tối ưu hóa trải nghiệm người dùng 60FPS." },
+      { phase: "PHASE 03", title: "Xây dựng Backend PostgreSQL & WebSocket", done: true, desc: "Tự chủ hạ tầng CSDL PostgreSQL 16 và máy chủ WebSocket." },
     ],
     gallery: [
       { title: "Vòng Quay & Thẻ Bài 3D", image: "/images/luxury_floor_plan.png", caption: "Giao diện trò chơi vòng quay và câu hỏi trắc nghiệm." },
     ],
-    stack: ["React 18", "TypeScript", "Framer Motion", "Canvas API", "Vercel"],
+    stack: ["React 18", "TypeScript", "PostgreSQL 16", "Express.js", "WebSocket (ws)", "Docker", "Framer Motion", "Canvas API", "Vercel"],
   },
 ] as const;
 
