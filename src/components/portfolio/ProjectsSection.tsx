@@ -5,13 +5,6 @@ import { projectsData, uiText, fxConfig, type ProjectData } from "./data";
 import { cardEntrance, slideRight, stagger, viewportOnce } from "./motion-presets";
 import { AnimWord } from "./AnimWord";
 import { useHoverEffect } from "@/hooks/useHoverEffect";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
 
 function StackTile({ s }: { s: string }) {
   const fx = useHoverEffect<HTMLDivElement>(fxConfig.projectStackTile);
@@ -227,47 +220,85 @@ function ProjectRow({ project, index }: { project: ProjectData; index: number })
         </button>
       </div>
 
-      <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-        {uiText.projects.entry} 0{index + 1} / 0{projectsData.length}
-      </div>
+      {/* Framer Motion Tech Stack Modal */}
+      {techOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-[999] flex items-center justify-center p-4 sm:p-6"
+        >
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setTechOpen(false)}
+            className="fixed inset-0 bg-black/80 backdrop-blur-md"
+          />
 
-      {/* About sheet */}
-      <Sheet open={aboutOpen} onOpenChange={setAboutOpen}>
-        <SheetContent className="overflow-y-auto sm:max-w-lg">
-          <SheetHeader>
-            <SheetTitle className="font-display text-3xl">{project.name}</SheetTitle>
-            <SheetDescription className="font-mono text-xs uppercase tracking-[0.2em]">
-              {project.type}
-            </SheetDescription>
-          </SheetHeader>
-          <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-            {project.about}
-          </p>
-          <div className="mt-6 flex items-center gap-3 font-mono text-xs uppercase tracking-wider">
-            <span className="text-muted-foreground">DEPLOY</span>
-            <a href={project.deployUrl} target="_blank" rel="noreferrer noopener" className="text-cyan">
-              {project.deploy} ↗
-            </a>
-          </div>
-        </SheetContent>
-      </Sheet>
+          {/* Dialog Container */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.92, y: 20 }}
+            transition={{ type: "spring", damping: 25, stiffness: 350 }}
+            className="relative z-10 w-full max-w-lg overflow-hidden rounded-3xl border border-border bg-card/95 p-6 shadow-2xl backdrop-blur-xl sm:p-8"
+          >
+            {/* Close Button */}
+            <button
+              type="button"
+              onClick={() => setTechOpen(false)}
+              className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-muted/60 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              aria-label="Đóng"
+            >
+              ✕
+            </button>
 
-      {/* Tech sheet */}
-      <Sheet open={techOpen} onOpenChange={setTechOpen}>
-        <SheetContent className="overflow-y-auto sm:max-w-lg">
-          <SheetHeader>
-            <SheetTitle className="font-display text-3xl">TECH STACK</SheetTitle>
-            <SheetDescription className="font-mono text-xs uppercase tracking-[0.2em]">
-              {uiText.projects.techStackDesc} {project.name.toLowerCase()}
-            </SheetDescription>
-          </SheetHeader>
-          <div className="mt-6 grid grid-cols-2 gap-3">
-            {project.stack.map((s) => (
-              <StackTile key={s} s={s} />
-            ))}
-          </div>
-        </SheetContent>
-      </Sheet>
+            {/* Header */}
+            <div className="space-y-1 pr-10">
+              <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-neon">
+                <span>●</span>
+                <span>{project.coord}</span>
+              </div>
+              <h3 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
+                TECH STACK ARCHITECTURE
+              </h3>
+              <p className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
+                {uiText.projects.techStackDesc} {project.name}
+              </p>
+            </div>
+
+            {/* Stack Tiles Grid */}
+            <div className="mt-6 max-h-[50vh] overflow-y-auto pr-1">
+              <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+                {project.stack.map((s) => (
+                  <StackTile key={s} s={s} />
+                ))}
+              </div>
+            </div>
+
+            {/* Footer Action Bar */}
+            <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-border/80 pt-5">
+              <Link
+                to="/projects/$id"
+                params={{ id: project.slug }}
+                onClick={() => setTechOpen(false)}
+                className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-[0.2em] text-background transition-transform hover:scale-105"
+              >
+                <span>XEM CHI TIẾT DỰ ÁN</span>
+                <span>➔</span>
+              </Link>
+              <button
+                type="button"
+                onClick={() => setTechOpen(false)}
+                className="rounded-full border border-border px-4 py-2.5 font-mono text-xs uppercase tracking-wider text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+              >
+                ĐÓNG
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </motion.article>
   );
 }
