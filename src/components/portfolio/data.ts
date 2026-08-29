@@ -189,51 +189,206 @@ export const toolbeltData = [
 ] as const;
 
 // ==========================================
-// 7. PROJECTS DATA (Dự án cá nhân - Projects Section)
-// Khai báo các dự án. Có thể thay đổi deployUrl và preview.
+// 7. PROJECTS DATA (Dự án cá nhân & Đồ án tốt nghiệp)
+// Khai báo các dự án với đầy đủ chi tiết phục vụ trang chi tiết
 // ==========================================
 export const projectsData = [
   {
     id: "p00",
+    slug: "kemdenz-buffet",
     coord: "DATN-SD33 · FPT POLYTECHNIC",
     name: "KEMDENZ BUFFET SYSTEM",
+    subtitle: "Hệ thống Monorepo Đặt bàn & Quản lý Chuỗi Nhà hàng Buffet Cao Cấp",
     year: "2026",
+    status: "IN DEVELOPMENT · BETA ONLINE",
+    statusText: "Đang phát triển & hoàn thiện (Sprint 4.5/5)",
+    progressPercent: 88,
+    currentPhase: "Hoàn thiện đồng bộ 5 Portals thời gian thực & Stress-test khóa phân tán Redis",
     type: "GRADUATION CAPSTONE · ENTERPRISE MONOREPO",
-    deploy: "K3MDENZ.SITE (LIVE)",
+    deploy: "K3MDENZ.SITE (BETA LIVE)",
     deployUrl: "https://k3mdenz.site",
     layout: "preview",
     preview: "/images/hero_seafood_bbq.png",
+    bannerImage: "/images/hero_seafood_bbq.png",
     about:
-      "Đồ án tốt nghiệp chuyên ngành Phát triển phần mềm (FPT Polytechnic - Sinh viên: Nguyễn Công Khiêm): Hệ thống Monorepo Đặt bàn & Quản lý Nhà hàng Buffet Chuỗi KemDenz cao cấp. Tích hợp 5 Phân hệ Portals thời gian thực (Customer Portal đặt bàn 2D trực quan, Thu ngân Cashier POS, Màn hình Bếp KDS, Phục vụ Staff Mobile, Admin Command Center), vận hành 10 thuật toán cốt lõi xử lý tải cao, khóa phân tán Redis chống Race Condition đặt trùng bàn và WebSocket STOMP. Website hiện đang hoạt động trực tiếp tại k3mdenz.site.",
-    stack: ["Spring Boot 3.2", "React 18", "PostgreSQL 16", "Redis 7", "WebSocket STOMP", "Flyway DB", "Docker"],
+      "Đồ án tốt nghiệp chuyên ngành Phát triển phần mềm (FPT Polytechnic - Sinh viên: Nguyễn Công Khiêm): Hệ thống Monorepo Đặt bàn & Quản lý Chuỗi Nhà hàng Buffet Chuỗi KemDenz cao cấp. Tích hợp 5 Phân hệ Portals thời gian thực (Customer Portal đặt bàn 2D trực quan, Thu ngân Cashier POS, Màn hình Bếp KDS, Phục vụ Staff Mobile, Admin Command Center), vận hành 10 thuật toán cốt lõi xử lý tải cao, khóa phân tán Redis chống Race Condition đặt trùng bàn và WebSocket STOMP. Website hiện đang hoạt động phiên bản thử nghiệm trực tiếp tại k3mdenz.site.",
+    problemStatement:
+      "Trong các chuỗi nhà hàng buffet quy mô lớn, bài toán khó nhất là tình trạng nghẽn cổ chai khi hàng trăm khách hàng cùng lúc chọn bàn vào giờ cao điểm, dẫn đến xung đột dữ liệu (Race Condition đặt trùng bàn), cũng như việc đồng bộ chậm trễ giữa khách gọi món, thu ngân POS và đầu bếp KDS làm gián đoạn quy trình phục vụ.",
+    solutionArchitecture:
+      "Xây dựng kiến trúc Monorepo Enterprise đa tầng với Spring Boot 3.2 làm Backend Core, PostgreSQL 16 + Redis 7 làm cơ sở dữ liệu & bộ nhớ đệm phân tán. Triển khai thuật toán Distributed Idempotency Lock qua Redis SETNX và AOP Aspect để cô lập tuyệt đối luồng thanh toán / giữ chỗ, kết hợp STOMP over WebSocket để phát sóng biến động trạng thái bàn & đơn món tức thời dưới 20ms.",
+    portals: [
+      {
+        name: "Customer Portal (Khách hàng)",
+        target: "Web & Mobile Browser",
+        role: "Trải nghiệm Đặt bàn 2D & Đặt món",
+        desc: "Sơ đồ bàn 2D trực quan theo tầng, chọn combo buffet, giữ bàn theo thời gian thực và thanh toán trực tuyến an toàn.",
+      },
+      {
+        name: "Cashier POS (Thu ngân)",
+        target: "Desktop / Tablet POS",
+        role: "Quản lý Bàn & Thanh toán hóa đơn",
+        desc: "Giao diện thu ngân tối ưu thao tác nhanh, mở bàn, in hóa đơn VAT, áp dụng voucher khuyến mãi và kết nối cổng thanh toán.",
+      },
+      {
+        name: "Kitchen Display System - KDS (Bếp)",
+        target: "Smart Screen / KDS Terminal",
+        role: "Điều phối Đơn chế biến tức thời",
+        desc: "Nhận lệnh gọi món từ khách/nhân viên tức thời qua WebSocket, đếm thời gian chế biến, phân loại món theo line nướng/lẩu/tráng miệng.",
+      },
+      {
+        name: "Staff Mobile Portal (Phục vụ)",
+        target: "Smartphone App",
+        role: "Order tại bàn & Phục vụ linh hoạt",
+        desc: "Nhân viên kiểm tra trạng thái bàn trống, hỗ trợ khách thêm món hoặc yêu cầu hỗ trợ bàn nhanh chóng.",
+      },
+      {
+        name: "Admin Command Center (Quản trị)",
+        target: "Desktop Admin",
+        role: "Báo cáo & Cấu hình chuỗi nhà hàng",
+        desc: "Biểu đồ phân tích doanh thu, quản lý định lượng kho nguyên liệu, phân quyền tài khoản RBAC và điều phối chi nhánh.",
+      },
+    ],
+    technicalHighlights: [
+      {
+        tag: "CONCURRENCY",
+        title: "Khóa Phân Tán Redis (Distributed Idempotency Lock)",
+        details: [
+          "Sử dụng Redis SETNX với TTL động chống tuyệt đối Race Condition khi 2 khách hàng cùng bấm giữ 1 bàn trong cùng 1 mili-giây.",
+          "Áp dụng Custom Annotation `@RedisLocked` qua Spring AOP giúp mã nguồn sạch đẹp, tự động unlock trong block finally.",
+          "Cơ chế Idempotency Token bảo vệ mọi giao dịch thanh toán không bị trừ tiền trùng lặp.",
+        ],
+      },
+      {
+        tag: "REALTIME",
+        title: "Hạ Tầng WebSocket STOMP & Redis Pub/Sub",
+        details: [
+          "Kênh truyền tin 2 chiều STOMP over WebSocket đồng bộ dữ liệu thời gian thực giữa 5 Portals với độ trễ < 20ms.",
+          "Tích hợp Redis Pub/Sub đóng vai trò Message Broker phân tán khi mở rộng quy trình đa server (Clustering).",
+          "Tự động tái kết nối (Heartbeat & Auto Reconnect) khi mạng thiết bị nhân viên chập chờn.",
+        ],
+      },
+      {
+        tag: "SPATIAL 2D",
+        title: "Thuật Toán Sơ Đồ Bàn 2D & Định Tuyến Phục Vụ",
+        details: [
+          "Mô phỏng sơ đồ kiến trúc mặt bằng nhà hàng bằng SVG Matrix Canvas chuẩn xác tỷ lệ.",
+          "Tính toán trạng thái bàn (Trống, Đang giữ chỗ, Đang dùng bữa, Cần dọn dẹp) theo màu sắc trực quan.",
+          "Hỗ trợ kéo thả bố trí bàn linh hoạt cho quản lý chi nhánh.",
+        ],
+      },
+      {
+        tag: "DATABASE",
+        title: "Flyway Database Migration (V1 → V41)",
+        details: [
+          "Toàn bộ 41 bảng dữ liệu được quản lý phiên bản nghiêm ngặt bằng Flyway Migration.",
+          "Tự động migrate schema và seed dữ liệu mẫu khi khởi chạy Docker Container.",
+          "Tối ưu Index B-Tree cho các trường tìm kiếm tần suất cao: `booking_time`, `table_id`, `status`.",
+        ],
+      },
+    ],
+    roadmap: [
+      { phase: "PHASE 01", title: "Thiết kế CSDL 41 Bảng & Kiến trúc Monorepo", done: true, desc: "Xác lập kiến trúc Spring Boot 3.2, PostgreSQL 16 và phân rã 5 portals." },
+      { phase: "PHASE 02", title: "Phát triển Core API & Khóa phân tán Redis", done: true, desc: "Xây dựng 60+ RESTful APIs, Spring Security JWT và thuật toán khóa bàn." },
+      { phase: "PHASE 03", title: "Xây dựng 5 Giao diện Portals Frontend", done: true, desc: "Hoàn thiện Customer Portal đặt bàn 2D, Cashier POS, KDS Bếp, Staff Mobile & Admin." },
+      { phase: "PHASE 04", title: "Deploy Domain k3mdenz.site & Thử nghiệm Beta", done: true, desc: "Đưa hệ thống online trực tiếp, kết nối domain và kiểm thử luồng thực tế." },
+      { phase: "PHASE 05", title: "Stress-Test Tải Cao & Báo Cáo Tốt Nghiệp", done: false, desc: "Kiểm thử tải 1000+ RPS đồng thời, tối ưu 60FPS và chuẩn bị hồ sơ bảo vệ DATN." },
+    ],
+    gallery: [
+      { title: "Customer Portal & Menu", image: "/images/hero_seafood_bbq.png", caption: "Giao diện trang chủ đặt bàn trực tuyến và thực đơn món nướng hải sản cao cấp." },
+      { title: "Sơ đồ Tầng 2D Thông minh", image: "/images/luxury_floor_plan.png", caption: "Bản đồ bàn 2D thời gian thực hiển thị trạng thái vị trí bàn theo từng tầng." },
+      { title: "Không gian Nhà hàng Sang trọng", image: "/images/restaurant_interior.png", caption: "Mô hình kiến trúc không gian Fine Dining và khu vực quầy buffet line." },
+    ],
+    stack: ["Java 17", "Spring Boot 3.2", "React 18", "PostgreSQL 16", "Redis 7", "WebSocket STOMP", "Flyway DB", "Docker", "Tailwind CSS"],
   },
   {
     id: "p01",
-    coord: "0xKD-001",
-    name: "DATING APP",
+    slug: "dating-app",
+    coord: "0xKD-001 · NETLIFY",
+    name: "DATING APP (CỔNG KHẾ ƯỚC)",
+    subtitle: "Động cơ Dựng & Trải Nghiệm Kịch Bản Hẹn Hò Tương Tác Cặp Đôi",
     year: "2026",
-    type: "MATCHING · REALTIME",
-    deploy: "NETLIFY",
+    status: "SHIPPED · LIVE",
+    statusText: "Đã triển khai chính thức",
+    progressPercent: 100,
+    currentPhase: "Vận hành ổn định & mở rộng kịch bản",
+    type: "CINEMATIC VISUAL NOVEL · DATE ENGINE",
+    deploy: "NETLIFY HOSTED",
     deployUrl: "https://statuesque-kashata-23f0cd.netlify.app/",
     layout: "preview",
     preview: "/images/restaurant_interior.png",
+    bannerImage: "/images/restaurant_interior.png",
     about:
-      "Dating app cá nhân — flow swipe-to-match, realtime chat và profile algorithm. Tập trung trải nghiệm vuốt mượt và phản hồi tức thì.",
-    stack: ["React", "Tailwind", "Framer Motion", "Supabase", "Netlify"],
+      "Dating app cá nhân — Động cơ Dựng & Trải Nghiệm Kịch Bản Hẹn Hò Tương Tác cho Cặp đôi theo mô hình Creator-Player qua 4 Phase điện ảnh (Cinematic). Flow swipe-to-match, Live Preview 2 chiều qua postMessage, đồng bộ thời gian thực Supabase Realtime, bộ trắc nghiệm Tarot và lưu trữ ảnh check-in IndexedDB.",
+    problemStatement:
+      "Các cặp đôi thường gặp khó khăn trong việc lên ý tưởng hẹn hò và lưu giữ kỷ niệm tương tác một cách ý nghĩa, sống động.",
+    solutionArchitecture:
+      "Mô hình Creator-Player cho phép 1 người thiết kế kịch bản và đối phương tham gia giải đố, mở khóa quà tặng và lưu ảnh kỷ niệm.",
+    technicalHighlights: [
+      {
+        tag: "REALTIME",
+        title: "Supabase Realtime Sync",
+        details: ["Đồng bộ tiến độ giữa 2 thiết bị người chơi với độ trễ thấp.", "Kênh trao đổi tin nhắn mật mã bí mật."],
+      },
+      {
+        tag: "ANIMATION",
+        title: "Framer Motion 4-Phase Transition",
+        details: ["Hiệu ứng chuyển cảnh điện ảnh 60FPS.", "Tích hợp âm thanh SFX và xúc giác."],
+      },
+    ],
+    roadmap: [
+      { phase: "PHASE 01", title: "Thiết kế kịch bản 4 Phase", done: true, desc: "Xây dựng luồng Creator & Player." },
+      { phase: "PHASE 02", title: "Tích hợp Supabase & IndexedDB", done: true, desc: "Lưu trữ dữ liệu và ảnh offline." },
+      { phase: "PHASE 03", title: "Deploy Netlify", done: true, desc: "Phát hành chính thức." },
+    ],
+    gallery: [
+      { title: "Giao diện Hẹn Hò Điện Ảnh", image: "/images/restaurant_interior.png", caption: "Không gian trải nghiệm hẹn hò bí ẩn và lãng mạn." },
+    ],
+    stack: ["React 18", "Tailwind CSS", "Framer Motion", "Supabase", "IndexedDB", "Netlify"],
   },
   {
     id: "p02",
-    coord: "0xKD-002",
-    name: "SPIN-QUIZZ",
+    slug: "spin-quizz",
+    coord: "0xKD-002 · VERCEL",
+    name: "SPIN-QUIZZ (THE KINETIC ROULETTE)",
+    subtitle: "Web-game Vòng Quay May Mắn & Thử Thách Trắc Nghiệm Realtime",
     year: "2026",
-    type: "GAME · MULTIPLAYER",
-    deploy: "VERCEL",
+    status: "SHIPPED · LIVE",
+    statusText: "Đã triển khai chính thức",
+    progressPercent: 100,
+    currentPhase: "Vận hành multiplayer ổn định",
+    type: "REAL-TIME GAME · 3D CARDS & QUIZ",
+    deploy: "VERCEL HOSTED",
     deployUrl: "https://spin-ran-dom.vercel.app",
     layout: "preview",
-    preview: "/placeholder.svg",
+    preview: "/images/luxury_floor_plan.png",
+    bannerImage: "/images/luxury_floor_plan.png",
     about:
-      "Nền tảng trò chơi vòng quay may mắn kết hợp trả lời câu hỏi hỗ trợ Multiplayer (Supabase room system). Người chơi có thể tạo phòng bằng custom code, cấu hình vòng quay linh hoạt cùng kho câu hỏi đa dạng không lặp lại.",
-    stack: ["React", "TypeScript", "Supabase", "Tailwind", "Framer Motion"],
+      "Nền tảng trò chơi vòng quay may mắn kết hợp trả lời câu hỏi hỗ trợ Multiplayer (Supabase room system). Người chơi có thể tạo phòng bằng custom code, cấu hình vòng quay linh hoạt cùng kho câu hỏi đa dạng không lặp lại. Spring Easing với hệ số động học thích ứng từ server real-time, thẻ bài 3D Parallax mượt mà không bao giờ rớt 60FPS.",
+    problemStatement:
+      "Các mini-game vòng quay thông thường thường đơn điệu, thiếu tính tương tác trực tiếp nhiều người chơi và vật lý quay không chân thực.",
+    solutionArchitecture:
+      "Kết hợp Canvas Physics Engine mô phỏng lực ma sát & quán tính thật với Supabase Room Protocol để kết nối phòng chơi 2-10 người.",
+    technicalHighlights: [
+      {
+        tag: "PHYSICS",
+        title: "Spring Physics Canvas Engine",
+        details: ["Vòng quay dừng lại tự nhiên theo hàm giảm chấn vật lý.", "Bộ hiệu ứng hạt Canvas Confetti khi trúng thưởng."],
+      },
+      {
+        tag: "MULTIPLAYER",
+        title: "Lobby Room Code Realtime",
+        details: ["Tạo và tham gia phòng qua mã PIN 6 số tức thì.", "Đồng bộ điểm số và lượt quay trực tiếp."],
+      },
+    ],
+    roadmap: [
+      { phase: "PHASE 01", title: "Thuật toán Vòng quay Canvas", done: true, desc: "Xây dựng engine quay vật lý thật." },
+      { phase: "PHASE 02", title: "Multiplayer Room System", done: true, desc: "Đồng bộ phòng chơi qua Supabase." },
+      { phase: "PHASE 03", title: "Deploy Vercel", done: true, desc: "Phát hành bản Production." },
+    ],
+    gallery: [
+      { title: "Vòng Quay & Thẻ Bài 3D", image: "/images/luxury_floor_plan.png", caption: "Giao diện trò chơi vòng quay và câu hỏi trắc nghiệm." },
+    ],
+    stack: ["React 18", "TypeScript", "Framer Motion", "Canvas API", "Supabase Realtime", "Vercel"],
   },
 ] as const;
 

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { projectsData, uiText, fxConfig, type ProjectData } from "./data";
 import { cardEntrance, slideRight, stagger, viewportOnce } from "./motion-presets";
 import { AnimWord } from "./AnimWord";
@@ -52,23 +53,20 @@ function PreviewFallback({ project }: { project: ProjectData }) {
         {project.name.split(" ")[0]}
       </span>
       <p className="max-w-[80%] font-mono text-[10px] uppercase tracking-[0.3em] text-background/80">
-        EMBED BLOCKED · OPEN LIVE TO VIEW
+        {project.subtitle || "EMBED BLOCKED · OPEN LIVE TO VIEW"}
       </p>
-      <a
-        href={project.deployUrl}
-        target="_blank"
-        rel="noreferrer noopener"
+      <Link
+        to="/projects/$id"
+        params={{ id: project.slug }}
         className="rounded-full bg-foreground px-5 py-2 font-mono text-xs uppercase tracking-[0.2em] text-background shadow-lg transition-transform hover:-translate-y-0.5"
       >
-        OPEN LIVE ↗
-      </a>
+        XEM CHI TIẾT DỰ ÁN ➔
+      </Link>
     </div>
   );
 }
 
 function buildScreenshotUrl(siteUrl: string) {
-  // Microlink free screenshot API — returns the screenshot image directly.
-  // Bypasses X-Frame-Options entirely (server-side rendering).
   const params = new URLSearchParams({
     url: siteUrl,
     screenshot: "true",
@@ -89,13 +87,13 @@ function PreviewBlock({ project }: { project: ProjectData }) {
 
   return (
     <div className="liquid-glass group relative aspect-video w-full overflow-hidden rounded-2xl">
-      <div className="absolute left-3 top-3 z-20 rounded-full bg-background/60 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.3em] text-foreground backdrop-blur">
-        {uiText.projects.livePreview}
+      <div className="absolute left-3 top-3 z-20 flex items-center gap-2 rounded-full bg-background/80 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-foreground backdrop-blur">
+        <span className={project.status.includes("DEVELOPMENT") ? "text-amber-400 animate-pulse" : "text-neon"}>●</span>
+        <span>{project.status}</span>
       </div>
 
       {hasLive ? (
         <>
-          {/* Server-side screenshot via Microlink — works for any site */}
           <img
             src={buildScreenshotUrl(project.deployUrl)}
             alt={`${project.name} live preview`}
@@ -105,29 +103,28 @@ function PreviewBlock({ project }: { project: ProjectData }) {
             className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
           />
 
-          {/* Skeleton while screenshot is being generated */}
           {!loaded && !failed && <PreviewSkeleton />}
-
-          {/* Fallback when the screenshot service errors out */}
           {failed && <PreviewFallback project={project} />}
 
-          {/* Subtle gradient for legibility of overlays */}
-          <div className="pointer-events-none absolute inset-0 z-[7] bg-gradient-to-t from-background/50 via-transparent to-transparent" />
+          <div className="pointer-events-none absolute inset-0 z-[7] bg-gradient-to-t from-background/70 via-transparent to-transparent" />
 
-          {/* Click-through link to open the real site */}
-          {!failed && (
+          <div className="absolute inset-0 z-10 flex items-end justify-between p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 focus-visible:opacity-100">
+            <Link
+              to="/projects/$id"
+              params={{ id: project.slug }}
+              className="rounded-full bg-foreground px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-background shadow-lg transition-transform hover:scale-105"
+            >
+              XEM CHI TIẾT ➔
+            </Link>
             <a
               href={project.deployUrl}
               target="_blank"
               rel="noreferrer noopener"
-              aria-label={`Open ${project.name} in a new tab`}
-              className="absolute inset-0 z-10 flex items-end justify-end p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 focus-visible:opacity-100"
+              className="rounded-full bg-background/90 backdrop-blur px-3 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-foreground shadow-lg hover:text-cyan"
             >
-              <span className="rounded-full bg-foreground px-4 py-2 font-mono text-[10px] uppercase tracking-[0.3em] text-background shadow-lg">
-                OPEN ↗
-              </span>
+              DEMO ↗
             </a>
-          )}
+          </div>
         </>
       ) : (
         <>
@@ -166,9 +163,35 @@ function ProjectRow({ project, index }: { project: ProjectData; index: number })
         <span>{project.year}</span>
       </header>
 
-      <h3 className="font-display text-3xl leading-[0.9] sm:text-4xl">
-        {project.name}
-      </h3>
+      <div>
+        <h3 className="font-display text-3xl leading-[0.9] sm:text-4xl">
+          {project.name}
+        </h3>
+        {project.subtitle && (
+          <p className="mt-1 font-mono text-xs text-muted-foreground">
+            {project.subtitle}
+          </p>
+        )}
+      </div>
+
+      {/* Status Progress Bar for in-progress projects */}
+      {project.progressPercent && project.progressPercent < 100 && (
+        <div className="space-y-1.5 rounded-xl bg-background/50 p-3 border border-border">
+          <div className="flex justify-between items-center font-mono text-[10px] uppercase tracking-wider">
+            <span className="text-amber-400 flex items-center gap-1.5">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-amber-400 animate-ping" />
+              {project.statusText || "Đang phát triển"}
+            </span>
+            <span className="font-bold">{project.progressPercent}%</span>
+          </div>
+          <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-amber-400 to-neon transition-all"
+              style={{ width: `${project.progressPercent}%` }}
+            />
+          </div>
+        </div>
+      )}
 
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] uppercase tracking-wider">
         <span className="text-muted-foreground">{project.type}</span>
@@ -183,22 +206,22 @@ function ProjectRow({ project, index }: { project: ProjectData; index: number })
         </a>
       </div>
 
-      <div className="flex flex-wrap gap-2">
-        <button
-          type="button"
-          onClick={() => setAboutOpen(true)}
-          onMouseEnter={fxAbout.onMouseEnter}
-          onAnimationEnd={fxAbout.onAnimationEnd}
-          className="hover-float rounded-full bg-foreground px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.2em] text-background shadow-lg transition-colors hover:bg-aurora hover:text-foreground"
+      <div className="flex flex-wrap gap-2 pt-1">
+        {/* Main CTA to dedicated Detail Page */}
+        <Link
+          to="/projects/$id"
+          params={{ id: project.slug }}
+          className="hover-float inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-background shadow-lg transition-colors hover:bg-aurora hover:text-foreground"
         >
-          {uiText.projects.aboutApp}
-        </button>
+          <span>CHI TIẾT DỰ ÁN</span>
+          <span>➔</span>
+        </Link>
         <button
           type="button"
           onClick={() => setTechOpen(true)}
           onMouseEnter={fxTech.onMouseEnter}
           onAnimationEnd={fxTech.onAnimationEnd}
-          className="liquid-glass hover-float rounded-full px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors hover:border-cyan hover:text-cyan"
+          className="liquid-glass hover-float rounded-full px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors hover:border-cyan hover:text-cyan"
         >
           {uiText.projects.techStack}
         </button>
