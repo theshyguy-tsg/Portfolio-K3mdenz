@@ -78,28 +78,30 @@ function PreviewBlock({ project }: { project: ProjectData }) {
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
 
+  const imageSrc = project.preview || project.bannerImage || (hasLive ? buildScreenshotUrl(project.deployUrl) : "");
+
   return (
-    <div className="liquid-glass group relative aspect-video w-full overflow-hidden rounded-2xl">
+    <div className="liquid-glass group relative aspect-video w-full overflow-hidden rounded-2xl bg-card">
       <div className="absolute left-3 top-3 z-20 flex items-center gap-2 rounded-full bg-background/80 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-foreground backdrop-blur">
         <span className={project.status.includes("DEVELOPMENT") ? "text-amber-400 animate-pulse" : "text-neon"}>●</span>
         <span>{project.status}</span>
       </div>
 
-      {hasLive ? (
+      {imageSrc ? (
         <>
           <img
-            src={buildScreenshotUrl(project.deployUrl)}
-            alt={`${project.name} live preview`}
+            src={imageSrc}
+            alt={`${project.name} preview`}
             loading="lazy"
             onLoad={() => setLoaded(true)}
             onError={() => setFailed(true)}
-            className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+            className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
           />
 
           {!loaded && !failed && <PreviewSkeleton />}
           {failed && <PreviewFallback project={project} />}
 
-          <div className="pointer-events-none absolute inset-0 z-[7] bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+          <div className="pointer-events-none absolute inset-0 z-[7] bg-gradient-to-t from-background/80 via-transparent to-transparent" />
 
           <div className="absolute inset-0 z-10 flex items-end justify-between p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 focus-visible:opacity-100">
             <Link
@@ -120,14 +122,7 @@ function PreviewBlock({ project }: { project: ProjectData }) {
           </div>
         </>
       ) : (
-        <>
-          <div className="absolute inset-0 flex items-center justify-center bg-aurora opacity-90">
-            <span className="font-display text-5xl text-background sm:text-7xl">
-              {project.name.split(" ")[0]}
-            </span>
-          </div>
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/30 to-transparent" />
-        </>
+        <PreviewFallback project={project} />
       )}
     </div>
   );

@@ -325,7 +325,7 @@ export const projectsData = [
     slug: "dating-app",
     coord: "0xKD-001 · NETLIFY",
     name: "DATING APP (CỔNG KHẾ ƯỚC)",
-    subtitle: "Động cơ Dựng & Trải Nghiệm Kịch Bản Hẹn Hò Tương Tác Cặp Đôi",
+    subtitle: "Động cơ Dựng & Trải Nghiệm Kịch Bản Hẹn Hò Tương Tác Cặp Đôi (Cinematic Visual Novel)",
     year: "2026",
     status: "CLIENT OFFLINE MODE · NETLIFY",
     statusText: "Client UI & Offline Mode hoạt động mượt mà — Backend Supabase cũ tạm ngưng",
@@ -337,8 +337,8 @@ export const projectsData = [
     deploy: "NETLIFY HOSTED",
     deployUrl: "https://statuesque-kashata-23f0cd.netlify.app/",
     layout: "preview",
-    preview: "/images/restaurant_interior.png",
-    bannerImage: "/images/restaurant_interior.png",
+    preview: "/images/dating_app_preview.jpg",
+    bannerImage: "/images/dating_app_preview.jpg",
     about:
       "Dating app cá nhân — Động cơ Dựng & Trải Nghiệm Kịch Bản Hẹn Hò Tương Tác cho Cặp đôi theo mô hình Creator-Player qua 4 Phase điện ảnh (Cinematic). Flow tương tác trực tiếp, bộ trắc nghiệm Tarot và lưu trữ ảnh check-in qua IndexedDB Client Storage, xây dựng trên nền tảng React 18 và Framer Motion.",
     problemStatement:
@@ -369,7 +369,7 @@ export const projectsData = [
       { phase: "PHASE 03", title: "Deploy Netlify", done: true, desc: "Phát hành bản Client Web." },
     ],
     gallery: [
-      { title: "Giao diện Hẹn Hò Điện Ảnh", image: "/images/restaurant_interior.png", caption: "Không gian trải nghiệm hẹn hò bí ẩn và lãng mạn." },
+      { title: "Giao diện Hẹn Hò Điện Ảnh", image: "/images/dating_app_preview.jpg", caption: "Không gian trải nghiệm hẹn hò bí ẩn và lãng mạn." },
     ],
     stack: ["React 18", "Tailwind CSS", "Framer Motion", "IndexedDB", "Netlify"],
   },
@@ -378,7 +378,7 @@ export const projectsData = [
     slug: "spin-quizz",
     coord: "0xKD-002 · VERCEL",
     name: "SPIN-QUIZZ (THE KINETIC ROULETTE)",
-    subtitle: "Web-game Vòng Quay May Mắn & Thử Thách Trắc Nghiệm Realtime",
+    subtitle: "Web-game Vòng Quay May Mắn & Thử Thách Trắc Nghiệm Realtime (HTML5 Canvas Physics & PostgreSQL)",
     year: "2026",
     status: "DATABASE ACTIVE · POSTGRESQL & WS",
     statusText: "Đã hoàn thiện CSDL PostgreSQL 16 & WebSocket Gateway độc lập",
@@ -390,8 +390,8 @@ export const projectsData = [
     deploy: "VERCEL HOSTED",
     deployUrl: "https://spin-ran-dom.vercel.app",
     layout: "preview",
-    preview: "/images/luxury_floor_plan.png",
-    bannerImage: "/images/luxury_floor_plan.png",
+    preview: "/images/spin_quizz_preview.jpg",
+    bannerImage: "/images/spin_quizz_preview.jpg",
     about:
       "Nền tảng trò chơi vòng quay may mắn kết hợp trả lời câu hỏi hỗ trợ chế độ chơi Đơn và Multiplayer. Sử dụng CSDL PostgreSQL 16 độc lập, Express REST API, WebSocket kết nối thời gian thực, Spring Physics Canvas Engine mô phỏng lực ma sát & quán tính thật, thẻ bài 3D Parallax mượt mà 60FPS và Studio cho phép người chơi tự tạo nội dung ô quay riêng.",
     problemStatement:
@@ -439,7 +439,7 @@ export const projectsData = [
       { phase: "PHASE 03", title: "Xây dựng Backend PostgreSQL & WebSocket", done: true, desc: "Tự chủ hạ tầng CSDL PostgreSQL 16 và máy chủ WebSocket hai chiều." },
     ],
     gallery: [
-      { title: "Vòng Quay & Thẻ Bài 3D", image: "/images/luxury_floor_plan.png", caption: "Giao diện trò chơi vòng quay và câu hỏi trắc nghiệm." },
+      { title: "Vòng Quay & Thẻ Bài 3D", image: "/images/spin_quizz_preview.jpg", caption: "Giao diện trò chơi vòng quay và câu hỏi trắc nghiệm." },
     ],
     stack: ["React 18", "TypeScript", "PostgreSQL 16", "Express.js", "WebSocket (ws)", "Docker", "Framer Motion", "Canvas API", "Vercel"],
   },
