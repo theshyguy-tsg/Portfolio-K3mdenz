@@ -144,11 +144,18 @@ export const educationData = {
   major: "PHÁT TRIỂN PHẦN MỀM · DATN-SD33",
   period: "2022 — 2026",
   blocks: [
-    { tag: "GRADUATION CAPSTONE", items: ["Đồ án Tốt nghiệp DATN-SD33: Hệ thống Buffet Booking Chuỗi KemDenz", "10 Thuật toán Cốt lõi & Khóa phân tán Redis", "5 Phân hệ Portals Monorepo"] },
-    { tag: "LANGUAGES", items: ["Java 17", "C++", "JavaScript", "TypeScript", "CSS"] },
-    { tag: "DATABASE", items: ["PostgreSQL 16", "Redis 7", "SQL Server", "Flyway DB"] },
-    { tag: "FRAMEWORKS", items: ["Spring Boot 3.2", "React", "Tailwind CSS", "Framer Motion"] },
-    { tag: "TOOLS & DEVOPS", items: ["Docker", "GitHub", "Postman", "IntelliJ IDEA", "VS Code"] },
+    {
+      tag: "GRADUATION CAPSTONE",
+      items: [
+        "Đồ án Tốt nghiệp DATN-SD33: Hệ thống Đặt bàn & Quản lý Chuỗi Nhà hàng Buffet KemDenz",
+        "10 Thuật toán Cốt lõi & Khóa phân tán Redis SETNX, @RedisLocked AOP",
+        "Kiến trúc Monorepo 5 Phân hệ Portals (Customer, Cashier POS, KDS Bếp, Staff Mobile, Admin)",
+      ],
+    },
+    { tag: "BACKEND & CORE", items: ["Java 17", "Spring Boot 3.2.4", "Spring Security 6 (JWT + RBAC)", "Spring Data JPA", "Apache POI"] },
+    { tag: "DATABASE & CACHING", items: ["PostgreSQL 16", "Redis 7 (Distributed Lock & Pub/Sub)", "Flyway DB (V1 ➔ V41)", "SQL Server"] },
+    { tag: "FRONTEND & UI/UX", items: ["React 18", "TypeScript", "Tailwind CSS", "Framer Motion", "HTML5 2D Canvas"] },
+    { tag: "REALTIME & DEVOPS", items: ["WebSocket STOMP over SockJS", "Docker", "Git / GitHub", "Postman", "IntelliJ IDEA", "VS Code"] },
   ],
 } as const;
 
@@ -159,21 +166,21 @@ export const educationData = {
 export const skillsData = [
   {
     code: "01",
-    title: "TRAIN AI MODELS",
-    body: "Fine-tune, prompt-engineer và đánh giá model AI. Hiểu pipeline từ data prep đến deployment.",
-    level: 82,
+    title: "AI AUTOMATION & WORKFLOWS",
+    body: "Thiết kế agent AI, prompt engineering và xây dựng workflow tự động hóa kết nối API, LLM và cơ sở dữ liệu để tối ưu hóa quy trình.",
+    level: 88,
   },
   {
     code: "02",
-    title: "MULTI-TOOL MASTERY",
-    body: "Thành thạo nhiều nguồn công cụ AI / no-code / dev — chuyển đổi linh hoạt theo yêu cầu dự án.",
+    title: "FULLSTACK & DISTRIBUTED SYSTEMS",
+    body: "Xây dựng hệ thống phân tán Spring Boot 3.2, React 18 Monorepo, PostgreSQL 16, Redis khóa phân tán SETNX và WebSocket thời gian thực.",
     level: 90,
   },
   {
     code: "03",
-    title: "AUTOMATION FLOW",
-    body: "Thiết kế workflow tự động hoá kết nối API, AI agent, và database — giảm thao tác thủ công.",
-    level: 75,
+    title: "VIBE CODING & RAPID PROTOTYPING",
+    body: "Hiện thực hóa ý tưởng UI/UX nhanh chóng, animation 60FPS mượt mà với Framer Motion và Canvas API, biến concept thành sản phẩm sống động.",
+    level: 85,
   },
 ] as const;
 
@@ -182,10 +189,10 @@ export const skillsData = [
 // Danh sách các công cụ chạy chữ ngang màn hình
 // ==========================================
 export const toolbeltData = [
-  "Java 17", "Spring Boot 3.2", "PostgreSQL 16", "Redis 7", "WebSocket STOMP",
-  "React", "TypeScript", "Tailwind", "Framer Motion", "Docker", "Flyway DB",
-  "ChatGPT", "Claude", "Gemini", "Lovable", "Antigravity", "Cursor",
-  "Vercel", "Netlify", "Supabase", "GitHub", "VS Code", "IntelliJ",
+  "Java 17", "Spring Boot 3.2.4", "PostgreSQL 16", "Redis 7", "WebSocket STOMP",
+  "React 18", "TypeScript", "Tailwind CSS", "Framer Motion", "Docker", "Flyway DB",
+  "Apache POI", "ChatGPT", "Claude", "Gemini", "Antigravity", "Cursor",
+  "Vercel", "Netlify", "GitHub", "VS Code", "IntelliJ IDEA", "Postman",
 ] as const;
 
 // ==========================================
