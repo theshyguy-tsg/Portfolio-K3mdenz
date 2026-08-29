@@ -84,28 +84,30 @@ export const profile = {
   handle: "@k3mdenz",
   name: "K3MDENZ",
   realName: "Nguyễn Công Khiêm",
-  greeting: "Engineering scalable architectures &",
-  role: "FULLSTACK DEVELOPER · SOFTWARE ENGINEER",
-  location: "Hanoi · Vietnam",
+  greeting: "Hi, I'm",
+  role: "FULLSTACK DEVELOPER · AI AUTOMATION ENGINEER",
+  location: "HCMC · Vietnam",
   status: "K3MDENZ.STUDIO",
-  tagline: "I architect scalable backends and craft high-fidelity interactive web apps.",
-  bio: "Kỹ sư phần mềm & Fullstack Developer tốt nghiệp FPT Polytechnic (Đồ án tốt nghiệp DATN-SD33). Chuyên sâu xây dựng kiến trúc Monorepo hiệu năng cao (Spring Boot, React, Redis, PostgreSQL), giải quyết bài toán khóa phân tán chống Race Condition và kiến tạo trải nghiệm Web tương tác thời gian thực (Real-time).",
+  tagline: "I build automation that thinks & craft high-fidelity interactive web apps.",
+  bio: "Sinh viên FPT Polytechnic ngành Phát triển phần mềm (Đồ án tốt nghiệp DATN-SD33). Tập trung chính vào Fullstack Monorepo, AI Automation và kết hợp tinh thần Vibe Coding để biến ý tưởng thành sản phẩm sống động.",
   quote:
-    "Một dòng code tốt không chỉ chạy đúng trong điều kiện lý tưởng, mà phải kiên cường trước tải cao và các tình huống cạnh tranh dữ liệu (Race Conditions). Từ hệ sinh thái Monorepo Enterprise cho tới các giao diện 3D tương tác mượt mà, tôi luôn đặt sự tối ưu hiệu năng và trải nghiệm người dùng lên hàng đầu.",
-  goal: "KIẾN TẠO HỆ THỐNG ENTERPRISE TẢI CAO & TRẢI NGHIỆM WEB TƯƠNG TÁC ĐỈNH CAO.",
-  email: "Khiemncth03021@fpt.edu.vn",
+    "Tôi là người luôn tự đẩy bản thân đến giới hạn tiếp theo — không phải vì áp lực, mà vì tôi thực sự tò mò xem mình có thể đi được bao xa. Từ việc tự học AI Automation, vibe-code ra các sản phẩm web thật sự chạy được, đến mơ về việc xây một doanh nghiệp công nghệ của riêng mình — tôi không build để học, tôi học để build thứ gì đó tạo ra giá trị.",
+  goal: "MỞ DOANH NGHIỆP CÔNG NGHỆ CỦA RIÊNG MÌNH.",
+  email: "k3mdenzy@gmail.com",
   socials: [
-    { label: "EMAIL · CONTACT", handle: "Khiemncth03021@fpt.edu.vn", href: "mailto:Khiemncth03021@fpt.edu.vn", status: "ACTIVE INBOX", dot: "neon", cta: "→ send email" },
-    { label: "GITHUB", handle: "theshyguy-tsg", href: "https://github.com/theshyguy-tsg", status: "OPEN SOURCE", dot: "cyan", cta: "→ view repos" },
+    { label: "MAIL", handle: "k3mdenzy@gmail.com", href: "mailto:k3mdenzy@gmail.com", status: "PRIMARY · < 24H", dot: "neon", cta: "→ say hi" },
+    { label: "MAIL · ALT", handle: "congkhiem3009@gmail.com", href: "mailto:congkhiem3009@gmail.com", status: "BACKUP INBOX", dot: "neon", cta: "→ also here" },
     { label: "LIVE DOMAIN", handle: "k3mdenz.site", href: "https://k3mdenz.site", status: "DATN ONLINE", dot: "lime", cta: "→ visit site" },
-    { label: "FACEBOOK", handle: "/k3mdenz", href: "#", status: "PERSONAL SPACE", dot: "cyan", cta: "→ add friend" },
-    { label: "LINKEDIN", handle: "/in/k3mdenz", href: "#", status: "PROFESSIONAL", dot: "lime", cta: "→ connect" },
+    { label: "GITHUB", handle: "/theshyguy-tsg", href: "https://github.com/theshyguy-tsg", status: "SHIPPING CODE", dot: "lime", cta: "→ see code" },
+    { label: "FACEBOOK", handle: "/tran.buianhnam", href: "https://www.facebook.com/tran.buianhnam", status: "DAILY", dot: "cyan", cta: "→ chat" },
+    { label: "INSTAGRAM", handle: "@km3den_", href: "https://www.instagram.com/km3den_/", status: "DM OPEN", dot: "neon", cta: "→ slide in" },
+    { label: "TELEGRAM", handle: "0837 855 760", href: "https://t.me/+84837855760", status: "FAST REPLY", dot: "lime", cta: "→ ping me" },
   ],
   contactMeta: {
-    responseTime: "< 2 HOURS",
-    timezone: "GMT+7 · Hanoi, Vietnam",
-    currently: "DEVELOPING NEXT-GEN ENTERPRISE PLATFORMS",
-    availableFor: ["FULLSTACK ROLES", "ENTERPRISE MONOREPO", "REAL-TIME SYSTEMS", "FRONTEND ARCHITECTURE", "TECH CONSULTING"],
+    responseTime: "< 24 HOURS",
+    timezone: "GMT+7 · HCMC",
+    currently: "BUILDING HIGH-SCALE APPS & AI WORKFLOWS",
+    availableFor: ["FULLSTACK ROLES", "FREELANCE", "COLLAB", "INTERNSHIP", "AI AUTOMATION GIGS", "COFFEE CHAT"],
   },
 } as const;
 
@@ -114,19 +116,19 @@ export const profile = {
 // ==========================================
 export const aboutData = {
   main: {
-    label: "BACKEND & MONOREPO",
-    title: "SCALABLE ARCHITECTURE",
-    body: "Làm chủ kiến trúc Monorepo Enterprise với Spring Boot 3, PostgreSQL 16 và Redis 7. Triển khai các thuật toán Distributed Idempotency Lock và AOP Distributed Lock để ngăn chặn tuyệt đối Race Condition và trùng lặp đơn hàng.",
+    label: "MAIN FOCUS",
+    title: "AI AUTOMATION & BACKEND",
+    body: "Xây dựng hệ thống AI tự động hoá và kiến trúc Monorepo Enterprise với Spring Boot 3, PostgreSQL 16 và Redis 7. Triển khai các thuật toán Distributed Idempotency Lock và AOP Distributed Lock để ngăn chặn tuyệt đối Race Condition và trùng lặp đơn hàng.",
   },
   vibe: {
-    label: "REAL-TIME SYSTEMS",
-    title: "WEBSOCKET & CONCURRENCY",
-    body: "Khai thác sức mạnh STOMP over WebSocket, Supabase Realtime và Redis Pub/Sub để đồng bộ dữ liệu thời gian thực giữa nhiều phân hệ người dùng (Khách hàng, POS Thu ngân, Màn hình Bếp KDS).",
+    label: "SIDE QUEST",
+    title: "VIBE CODING & REAL-TIME",
+    body: "Code theo cảm hứng, prototype nhanh, thử nghiệm UI/UX táo bạo. Khai thác sức mạnh STOMP over WebSocket, Supabase Realtime và Redis Pub/Sub để đồng bộ dữ liệu thời gian thực giữa nhiều phân hệ người dùng.",
   },
   dev: {
-    label: "HIGH-FIDELITY FRONTEND",
-    title: "MICRO-INTERACTIONS & 3D",
-    body: "Tối ưu hóa giao diện người dùng đạt chuẩn 60FPS với React 18/19, TypeScript, Tailwind CSS, Framer Motion và Canvas API. Thiết kế theo triết lý Glassmorphism và sơ đồ 2D tương tác thông minh.",
+    label: "FOUNDATION",
+    title: "SOFTWARE ENGINEERING",
+    body: "Nền tảng lập trình từ C++, Java đến TypeScript — hiểu rõ cấu trúc dữ liệu, thuật toán và vòng đời phát triển phần mềm. Tối ưu hóa giao diện người dùng đạt chuẩn 60FPS với React 18/19, Tailwind CSS và Framer Motion.",
   },
 } as const;
 
@@ -135,13 +137,13 @@ export const aboutData = {
 // ==========================================
 export const educationData = {
   school: "FPT POLYTECHNIC",
-  major: "SOFTWARE ENGINEERING · DATN-SD33",
+  major: "PHÁT TRIỂN PHẦN MỀM · DATN-SD33",
   period: "2022 — 2026",
   blocks: [
     { tag: "GRADUATION CAPSTONE", items: ["Đồ án Tốt nghiệp DATN-SD33: Hệ thống Buffet Booking Chuỗi KemDenz", "Bảo vệ Đồ án đạt xuất sắc với 10 Thuật toán Cốt lõi", "Kiến trúc 5 Phân hệ Portals Monorepo"] },
-    { tag: "CORE BACKEND & DB", items: ["Java 17 / Spring Boot 3.2 Enterprise", "PostgreSQL 16 & Redis 7 Distributed Cache", "Flyway DB Database Migration (V1 → V41)", "Spring Security RBAC & JWT Authentication"] },
-    { tag: "FRONTEND & REALTIME", items: ["React 18/19, TypeScript, Vite, TanStack", "STOMP over WebSocket & Redis Pub/Sub", "Framer Motion & Canvas 2D Spatial Engines"] },
-    { tag: "DEV TOOLS & DEVOPS", items: ["Docker & Docker Compose Containerization", "Git / GitHub Monorepo Workflow", "Cloudflare Pages & Vercel Edge Deployment"] },
+    { tag: "LANGUAGES & CORE", items: ["Java 17 / Spring Boot 3.2 Enterprise", "C++ Algorithms & Data Structures", "TypeScript & JavaScript ESNext", "SQL Server & PostgreSQL 16"] },
+    { tag: "DATABASE & CACHE", items: ["Redis 7 Distributed Cache & Lock", "Flyway DB Database Migration (V1 → V41)", "Supabase Realtime & PostgreSQL"] },
+    { tag: "TOOLS & DEVOPS", items: ["Docker & Containerization", "GitHub VCS Workflow", "Postman API Testing", "IntelliJ IDEA & VS Code"] },
   ],
 } as const;
 
@@ -151,20 +153,20 @@ export const educationData = {
 export const skillsData = [
   {
     code: "01",
+    title: "TRAIN AI MODELS & AUTOMATION",
+    body: "Fine-tune, prompt-engineer và xây dựng workflow tự động hoá kết nối API, AI agent, và database — giảm tối đa thao tác thủ công.",
+    level: 95,
+  },
+  {
+    code: "02",
     title: "SYSTEM ARCHITECTURE & CONCURRENCY",
     body: "Thiết kế kiến trúc Monorepo Enterprise, xử lý tải cao, khóa phân tán Redis chống Race Condition và đảm bảo tính Idempotency cho các luồng thanh toán / đặt bàn.",
     level: 96,
   },
   {
-    code: "02",
+    code: "03",
     title: "REAL-TIME MULTI-PORTAL SYNC",
     body: "Đồng bộ trạng thái tức thì giữa nhiều phân hệ người dùng (Khách hàng, Thu ngân POS, Nhà bếp KDS) qua giao thức WebSocket STOMP và Redis Pub/Sub.",
-    level: 94,
-  },
-  {
-    code: "03",
-    title: "HIGH-FIDELITY UI/UX & GRAPHICS",
-    body: "Kiến tạo giao diện hiện đại mượt mà với React, Framer Motion, hiệu ứng hạt ánh sáng, sơ đồ tầng 2D tương tác và đồ họa 3D Parallax chân thực.",
     level: 92,
   },
 ] as const;
@@ -173,10 +175,10 @@ export const skillsData = [
 // 6. TOOLBELT DATA (Developer Tech Stack)
 // ==========================================
 export const toolbeltData = [
+  "ChatGPT", "Claude", "Gemini", "Lovable", "Antigravity", "Cursor",
   "Java 17", "Spring Boot 3.2", "React 19", "TypeScript", "PostgreSQL 16",
-  "Redis 7", "WebSocket STOMP", "Tailwind CSS v4", "TanStack Router",
-  "Framer Motion", "Docker", "Flyway DB", "Vite", "Supabase", "Git / GitHub",
-  "Spring Security", "Cloudflare Workers", "Vercel Edge",
+  "Redis 7", "WebSocket STOMP", "Tailwind CSS v4", "Supabase", "Docker",
+  "Flyway DB", "Vite", "Vercel", "Netlify", "GitHub", "VS Code", "IntelliJ",
 ] as const;
 
 // ==========================================
@@ -199,6 +201,34 @@ export const projectsData = [
   },
   {
     id: "p02",
+    coord: "0xKD-001 · NETLIFY",
+    name: "CỔNG KHẾ ƯỚC (DATING APP)",
+    year: "2026",
+    type: "CINEMATIC VISUAL NOVEL · DATE ENGINE",
+    deploy: "NETLIFY HOSTED",
+    deployUrl: "https://statuesque-kashata-23f0cd.netlify.app/",
+    layout: "preview",
+    preview: "/images/restaurant_interior.png",
+    about:
+      "Dating app cá nhân — Động cơ Dựng & Trải Nghiệm Kịch Bản Hẹn Hò Tương Tác cho Cặp đôi theo mô hình Creator-Player qua 4 Phase điện ảnh (Cinematic). Flow swipe-to-match, Live Preview 2 chiều qua postMessage, đồng bộ thời gian thực Supabase Realtime, bộ trắc nghiệm Tarot và lưu trữ ảnh check-in IndexedDB.",
+    stack: ["React 18", "Tailwind CSS", "Framer Motion", "Supabase", "IndexedDB"],
+  },
+  {
+    id: "p03",
+    coord: "0xKD-002 · VERCEL",
+    name: "THE KINETIC ROULETTE (SPIN-QUIZZ)",
+    year: "2026",
+    type: "REAL-TIME GAME · 3D CARDS & QUIZ",
+    deploy: "VERCEL HOSTED",
+    deployUrl: "https://spin-ran-dom.vercel.app",
+    layout: "preview",
+    preview: "/images/luxury_floor_plan.png",
+    about:
+      "Nền tảng trò chơi vòng quay may mắn kết hợp trả lời câu hỏi hỗ trợ Multiplayer Real-time (Supabase room system). Spring Easing với hệ số động học thích ứng từ server real-time. Vòng quay dừng lại như vật lý thật, thẻ bài 3D Parallax mượt mà không bao giờ rớt 60FPS.",
+    stack: ["React 18", "TypeScript", "Framer Motion", "Canvas API", "Supabase Realtime"],
+  },
+  {
+    id: "p04",
     coord: "SPATIAL ALGORITHM · 2D ENGINE",
     name: "BUFFET 2D FLOOR MAP",
     year: "2026",
@@ -210,34 +240,6 @@ export const projectsData = [
     about:
       "Phân hệ sơ đồ bàn 2D trực quan của hệ thống KemDenz Buffet: Cho phép khách hàng chọn vị trí bàn theo tầng với giao diện đồ họa sống động, tính toán trạng thái trống/đầy và khóa giữ bàn thời gian thực bằng Distributed Idempotency Lock qua Redis SETNX.",
     stack: ["React 18", "SVG Matrix", "Redis SETNX", "Spring Boot", "A* Pathfinding", "WebSocket"],
-  },
-  {
-    id: "p03",
-    coord: "INTERACTIVE CREATOR-PLAYER",
-    name: "MYSTIC WINE MUSE",
-    year: "2026",
-    type: "CINEMATIC VISUAL NOVEL · DATE ENGINE",
-    deploy: "DATING ENGINE WEB APP",
-    deployUrl: "/images/restaurant_interior.png",
-    layout: "preview",
-    preview: "/images/restaurant_interior.png",
-    about:
-      "Động cơ Dựng & Trải Nghiệm Kịch Bản Hẹn Hò Tương Tác cho Cặp đôi theo mô hình Creator-Player qua 4 Phase điện ảnh (Cinematic). Tích hợp Live Preview 2 chiều qua postMessage, đồng bộ thời gian thực Supabase Realtime, bộ trắc nghiệm Tarot và lưu trữ ảnh check-in IndexedDB.",
-    stack: ["React 18", "TypeScript", "Tailwind CSS", "Supabase Realtime", "IndexedDB", "Framer Motion"],
-  },
-  {
-    id: "p04",
-    coord: "REALTIME MULTIPLAYER LOBBY",
-    name: "SPINRANDOM MULTIPLAYER",
-    year: "2026",
-    type: "REAL-TIME GAME · 3D CARDS & QUIZ",
-    deploy: "MULTIPLAYER GAME LOBBY",
-    deployUrl: "/images/hero_seafood_bbq.png",
-    layout: "preview",
-    preview: "/images/hero_seafood_bbq.png",
-    about:
-      "Web-game vòng quay may mắn kết hợp thử thách trắc nghiệm tương tác thời gian thực cho 2 người chơi (Host & Guest) hoặc chơi Offline. Trải nghiệm thẻ bài 3D Parallax phản hồi di chuột và bộ âm thanh SFX & xúc giác Haptic.",
-    stack: ["React 18", "TypeScript", "Framer Motion", "Supabase Realtime", "Canvas Confetti", "SFX Engine"],
   },
 ] as const;
 
