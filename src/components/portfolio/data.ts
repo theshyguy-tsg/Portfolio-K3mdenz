@@ -100,6 +100,7 @@ export const profile = {
     { label: "MAIL", handle: "k3mdenzy@gmail.com", href: "mailto:k3mdenzy@gmail.com", status: "PRIMARY · < 24H", dot: "neon", cta: "→ say hi" },
     { label: "MAIL · ALT", handle: "congkhiem3009@gmail.com", href: "mailto:congkhiem3009@gmail.com", status: "BACKUP INBOX", dot: "neon", cta: "→ also here" },
     { label: "GITHUB", handle: "/theshyguy-tsg", href: "https://github.com/theshyguy-tsg", status: "SHIPPING CODE", dot: "lime", cta: "→ see code" },
+    { label: "FACEBOOK", handle: "Nguyễn Công Khiêm", href: "https://www.facebook.com", status: "DM OPEN", dot: "cyan", cta: "→ chat" },
     { label: "TELEGRAM", handle: "0837 855 760", href: "https://t.me/+84837855760", status: "FAST REPLY", dot: "lime", cta: "→ ping me" },
     { label: "INSTAGRAM", handle: "@km3den_", href: "https://www.instagram.com/km3den_/", status: "DM OPEN", dot: "neon", cta: "→ slide in" },
   ],
@@ -150,10 +151,10 @@ export const educationData = {
         "Kiến trúc Monorepo 5 Phân hệ Portals (Customer, Cashier POS, KDS Bếp, Staff Mobile, Admin)",
       ],
     },
-    { tag: "BACKEND & CORE", items: ["Java 17", "Spring Boot 3.2.4", "Spring Security 6 (JWT + RBAC)", "Spring Data JPA", "Apache POI"] },
-    { tag: "DATABASE & CACHING", items: ["PostgreSQL 16", "Redis 7 (Distributed Lock & Pub/Sub)", "Flyway DB (V1 ➔ V41)", "SQL Server"] },
-    { tag: "FRONTEND & UI/UX", items: ["React 18", "TypeScript", "Tailwind CSS", "Framer Motion", "HTML5 2D Canvas"] },
-    { tag: "REALTIME & DEVOPS", items: ["WebSocket STOMP over SockJS", "Docker", "Git / GitHub", "Postman", "IntelliJ IDEA", "VS Code"] },
+    { tag: "BACKEND & CORE", items: ["Java", "Spring Boot", "Spring Security (JWT + RBAC)", "Spring Data JPA", "Apache POI"] },
+    { tag: "DATABASE & CACHING", items: ["PostgreSQL", "Redis (Distributed Lock & Pub/Sub)", "Flyway DB", "SQL Server"] },
+    { tag: "FRONTEND & UI/UX", items: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "HTML5 2D Canvas"] },
+    { tag: "REALTIME & DEVOPS", items: ["WebSocket STOMP", "Docker", "Git / GitHub", "Postman", "IntelliJ IDEA", "VS Code"] },
   ],
 } as const;
 
@@ -171,7 +172,7 @@ export const skillsData = [
   {
     code: "02",
     title: "FULLSTACK & DISTRIBUTED SYSTEMS",
-    body: "Xây dựng hệ thống phân tán Spring Boot 3.2, React 18 Monorepo, PostgreSQL 16, Redis khóa phân tán SETNX và WebSocket thời gian thực.",
+    body: "Xây dựng hệ thống phân tán Spring Boot, React Monorepo, PostgreSQL, Redis khóa phân tán SETNX và WebSocket thời gian thực.",
     level: 90,
   },
   {
@@ -187,8 +188,8 @@ export const skillsData = [
 // Danh sách các công cụ chạy chữ ngang màn hình
 // ==========================================
 export const toolbeltData = [
-  "Java 17", "Spring Boot 3.2.4", "PostgreSQL 16", "Redis 7", "WebSocket STOMP",
-  "React 18", "TypeScript", "Tailwind CSS", "Framer Motion", "Docker", "Flyway DB",
+  "Java", "Spring Boot", "PostgreSQL", "Redis", "WebSocket STOMP",
+  "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Docker", "Flyway DB",
   "Apache POI", "ChatGPT", "Claude", "Gemini", "Antigravity", "Cursor",
   "Vercel", "Netlify", "GitHub", "VS Code", "IntelliJ IDEA", "Postman",
 ] as const;
@@ -213,8 +214,8 @@ export const projectsData = [
     deploy: "K3MDENZ.SITE (BETA LIVE)",
     deployUrl: "https://k3mdenz.site",
     layout: "preview",
-    preview: "/images/hero_seafood_bbq.png",
-    bannerImage: "/images/hero_seafood_bbq.png",
+    preview: "/images/kemdenz_buffet_showcase.jpg",
+    bannerImage: "/images/kemdenz_buffet_showcase.jpg",
     about:
       "Đồ án tốt nghiệp Chuyên ngành Phát triển phần mềm (FPT Polytechnic - Sinh viên: Nguyễn Công Khiêm, Mã SV: SD33): Hệ thống Monorepo Đặt bàn & Quản lý Chuỗi Nhà hàng Buffet KemDenz. Tích hợp 5 Phân hệ Portals vận hành trên cùng Monorepo (Customer Portal đặt bàn 2D, Cashier POS thu ngân, KDS Kitchen Display màn hình bếp, Staff Mobile phục vụ, Admin Command Center), CSDL PostgreSQL 16 quản lý qua 41 migration Flyway, Redis 7 (khóa phân tán SETNX & Rate limit), STOMP over WebSocket và Apache POI kết xuất báo cáo Excel.",
     problemStatement:
@@ -316,7 +317,7 @@ export const projectsData = [
       { title: "Sơ đồ Tầng 2D Thông minh", image: "/images/luxury_floor_plan.png", caption: "Bản đồ bàn 2D thời gian thực hiển thị trạng thái vị trí bàn theo từng tầng." },
       { title: "Không gian Nhà hàng Sang trọng", image: "/images/restaurant_interior.png", caption: "Mô hình kiến trúc không gian Fine Dining và khu vực quầy buffet line." },
     ],
-    stack: ["Java 17", "Spring Boot 3.2.4", "PostgreSQL 16", "Redis 7", "WebSocket STOMP", "Flyway DB", "React 18", "Docker", "Apache POI"],
+    stack: ["Java", "Spring Boot", "PostgreSQL", "Redis", "WebSocket STOMP", "Flyway DB", "React", "Docker", "Apache POI"],
   },
   {
     id: "p01",
@@ -335,10 +336,10 @@ export const projectsData = [
     deploy: "NETLIFY HOSTED",
     deployUrl: "https://statuesque-kashata-23f0cd.netlify.app/",
     layout: "preview",
-    preview: "/images/dating_app_preview.jpg",
-    bannerImage: "/images/dating_app_preview.jpg",
+    preview: "/images/dating_app_showcase.jpg",
+    bannerImage: "/images/dating_app_showcase.jpg",
     about:
-      "Dating app cá nhân — Động cơ Dựng & Trải Nghiệm Kịch Bản Hẹn Hò Tương Tác cho Cặp đôi theo mô hình Creator-Player qua 4 Phase điện ảnh (Cinematic). Flow tương tác trực tiếp, bộ trắc nghiệm Tarot và lưu trữ ảnh check-in qua IndexedDB Client Storage, xây dựng trên nền tảng React 18 và Framer Motion.",
+      "Dating app cá nhân — Động cơ Dựng & Trải Nghiệm Kịch Bản Hẹn Hò Tương Tác cho Cặp đôi theo mô hình Creator-Player qua 4 Phase điện ảnh (Cinematic). Flow tương tác trực tiếp, bộ trắc nghiệm Tarot và lưu trữ ảnh check-in qua IndexedDB Client Storage, xây dựng trên nền tảng React và Framer Motion.",
     problemStatement:
       "Các cặp đôi thường gặp khó khăn trong việc lên ý tưởng hẹn hò và lưu giữ kỷ niệm tương tác một cách ý nghĩa, sống động.",
     solutionArchitecture:
@@ -367,9 +368,9 @@ export const projectsData = [
       { phase: "PHASE 03", title: "Deploy Netlify", done: true, desc: "Phát hành bản Client Web." },
     ],
     gallery: [
-      { title: "Giao diện Hẹn Hò Điện Ảnh", image: "/images/dating_app_preview.jpg", caption: "Không gian trải nghiệm hẹn hò bí ẩn và lãng mạn." },
+      { title: "Giao diện Hẹn Hò Điện Ảnh", image: "/images/dating_app_showcase.jpg", caption: "Không gian trải nghiệm hẹn hò bí ẩn và lãng mạn." },
     ],
-    stack: ["React 18", "Tailwind CSS", "Framer Motion", "IndexedDB", "Netlify"],
+    stack: ["React", "Tailwind CSS", "Framer Motion", "IndexedDB", "Netlify"],
   },
   {
     id: "p02",
@@ -379,23 +380,23 @@ export const projectsData = [
     subtitle: "Web-game Vòng Quay May Mắn & Thử Thách Trắc Nghiệm Realtime (HTML5 Canvas Physics & PostgreSQL)",
     year: "2026",
     status: "DATABASE ACTIVE · POSTGRESQL & WS",
-    statusText: "Đã hoàn thiện CSDL PostgreSQL 16 & WebSocket Gateway độc lập",
+    statusText: "Đã hoàn thiện CSDL PostgreSQL & WebSocket Gateway độc lập",
     progressPercent: 100,
     currentPhase: "Backend PostgreSQL & WebSocket hoàn tất — Hỗ trợ cả Offline Mode lẫn Realtime Server",
     dbNotice:
-      "Dự án đã được trang bị trọn bộ CSDL PostgreSQL 16 (4 bảng chuẩn hóa: spin_rooms, game_sessions, game_scores, game_history), Express REST API, WebSocket Server thời gian thực và Studio tự tạo ô vòng quay.",
+      "Dự án đã được trang bị trọn bộ CSDL PostgreSQL (4 bảng chuẩn hóa: spin_rooms, game_sessions, game_scores, game_history), Express REST API, WebSocket Server thời gian thực và Studio tự tạo ô vòng quay.",
     type: "REAL-TIME GAME · 3D CARDS & QUIZ",
     deploy: "VERCEL HOSTED",
     deployUrl: "https://spin-ran-dom.vercel.app",
     layout: "preview",
-    preview: "/images/spin_quizz_preview.jpg",
-    bannerImage: "/images/spin_quizz_preview.jpg",
+    preview: "/images/spin_quizz_showcase.jpg",
+    bannerImage: "/images/spin_quizz_showcase.jpg",
     about:
-      "Nền tảng trò chơi vòng quay may mắn kết hợp trả lời câu hỏi hỗ trợ chế độ chơi Đơn và Multiplayer. Sử dụng CSDL PostgreSQL 16 độc lập, Express REST API, WebSocket kết nối thời gian thực, Spring Physics Canvas Engine mô phỏng lực ma sát & quán tính thật, thẻ bài 3D Parallax mượt mà 60FPS và Studio cho phép người chơi tự tạo nội dung ô quay riêng.",
+      "Nền tảng trò chơi vòng quay may mắn kết hợp trả lời câu hỏi hỗ trợ chế độ chơi Đơn và Multiplayer. Sử dụng CSDL PostgreSQL độc lập, Express REST API, WebSocket kết nối thời gian thực, Spring Physics Canvas Engine mô phỏng lực ma sát & quán tính thật, thẻ bài 3D Parallax mượt mà 60FPS và Studio cho phép người chơi tự tạo nội dung ô quay riêng.",
     problemStatement:
       "Các mini-game vòng quay thông thường thường bị gắn cứng nội dung, phụ thuộc vào nền tảng đám mây trả phí và thiếu tính chủ động khi người dùng muốn tùy biến theo các buổi tiệc khác nhau.",
     solutionArchitecture:
-      "Kết hợp HTML5 2D Canvas Physics Engine mô phỏng chuyển động cơ học mượt mà với Backend Node.js / Express + PostgreSQL 16 + Native WebSocket Server (`ws`) để đồng bộ phòng chơi thời gian thực, kèm Studio cho phép tùy biến toàn diện ô quay.",
+      "Kết hợp HTML5 2D Canvas Physics Engine mô phỏng chuyển động cơ học mượt mà với Backend Node.js / Express + PostgreSQL + Native WebSocket Server (`ws`) để đồng bộ phòng chơi thời gian thực, kèm Studio cho phép tùy biến toàn diện ô quay.",
     technicalHighlights: [
       {
         tag: "CUSTOM STUDIO",
@@ -408,7 +409,7 @@ export const projectsData = [
       },
       {
         tag: "DATABASE & REALTIME",
-        title: "PostgreSQL 16 & Native WebSocket Gateway",
+        title: "PostgreSQL & Native WebSocket Gateway",
         details: [
           "Hệ thống 4 bảng dữ liệu (spin_rooms, game_sessions, game_scores, game_history) quản lý phòng chơi, điểm số và nhật ký quay.",
           "Kênh truyền tin WebSocket hai chiều phát sóng trạng thái phòng tức thời giữa Host và Guest.",
@@ -434,12 +435,12 @@ export const projectsData = [
     roadmap: [
       { phase: "PHASE 01", title: "Thuật toán Vòng quay Canvas & Physics", done: true, desc: "Xây dựng engine quay vật lý thật và âm thanh SFX." },
       { phase: "PHASE 02", title: "Giao diện Thẻ bài 3D Parallax & Custom Studio", done: true, desc: "Tối ưu hóa trải nghiệm 60FPS và công cụ tự tạo ô vòng quay." },
-      { phase: "PHASE 03", title: "Xây dựng Backend PostgreSQL & WebSocket", done: true, desc: "Tự chủ hạ tầng CSDL PostgreSQL 16 và máy chủ WebSocket hai chiều." },
+      { phase: "PHASE 03", title: "Xây dựng Backend PostgreSQL & WebSocket", done: true, desc: "Tự chủ hạ tầng CSDL PostgreSQL và máy chủ WebSocket hai chiều." },
     ],
     gallery: [
-      { title: "Vòng Quay & Thẻ Bài 3D", image: "/images/spin_quizz_preview.jpg", caption: "Giao diện trò chơi vòng quay và câu hỏi trắc nghiệm." },
+      { title: "Vòng Quay & Thẻ Bài 3D", image: "/images/spin_quizz_showcase.jpg", caption: "Giao diện trò chơi vòng quay và câu hỏi trắc nghiệm." },
     ],
-    stack: ["React 18", "TypeScript", "PostgreSQL 16", "Express.js", "WebSocket (ws)", "Docker", "Framer Motion", "Canvas API", "Vercel"],
+    stack: ["React", "TypeScript", "PostgreSQL", "Express.js", "WebSocket", "Docker", "Framer Motion", "Canvas API", "Vercel"],
   },
 ] as const;
 
