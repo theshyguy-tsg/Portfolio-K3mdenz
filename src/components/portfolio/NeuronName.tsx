@@ -13,10 +13,10 @@ interface Props {
 }
 
 /**
- * Canvas-based neuron particle text. On hover, the letters scatter into ~600
- * neuron particles connected by short lines. Returns to origin via spring.
+ * Canvas-based neural particle text for K3MDENZ.
+ * Samples letter matrix and renders interactive magnetic neuron particles.
  */
-export function NeuronName({ text, fontSize = 180, className }: Props) {
+export function NeuronName({ text, fontSize = 220, className }: Props) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const mouseRef = useRef({ x: -9999, y: -9999, active: false });
@@ -26,148 +26,167 @@ export function NeuronName({ text, fontSize = 180, className }: Props) {
     const wrap = wrapRef.current;
     if (!canvas || !wrap) return;
 
-    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let particles: Particle[] = [];
     let raf = 0;
     let width = 0;
     let height = 0;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const buildParticles = () => {
       const rect = wrap.getBoundingClientRect();
-      width = Math.max(rect.width, 320);
-      // Scale font for viewport
-      const fs = Math.min(fontSize, width / (text.length * 0.55));
-      height = Math.max(fs * 1.3, 140);
+      const parentWidth = wrap.parentElement?.getBoundingClientRect().width || window.innerWidth;
+      width = Math.max(rect.width || parentWidth - 48, 340);
+      
+      // Calculate responsive font size
+      const targetFontSize = Math.min(fontSize, Math.max(width / (text.length * 0.58), 44));
+      height = Math.max(targetFontSize * 1.3, 110);
 
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
+      // Set physical canvas dimensions
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      // Draw text offscreen
-      ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = "#fff";
-      ctx.font = `900 ${fs}px Anton, Space Grotesk, sans-serif`;
-      ctx.textBaseline = "middle";
-      ctx.textAlign = "center";
-      ctx.fillText(text, width / 2, height / 2);
+      // Create offscreen canvas for bulletproof pixel sampling
+      const offCanvas = document.createElement("canvas");
+      offCanvas.width = canvas.width;
+      offCanvas.height = canvas.height;
+      const offCtx = offCanvas.getContext("2d");
+      if (!offCtx) return;
 
-      const img = ctx.getImageData(0, 0, width * dpr, height * dpr);
-      const data = img.data;
-      particles = [];
-      const step = 5; // density
-      for (let y = 0; y < height * dpr; y += step) {
-        for (let x = 0; x < width * dpr; x += step) {
-          const idx = (y * width * dpr + x) * 4 + 3; // alpha channel
-          if (data[idx] > 128) {
-            particles.push({
-              ox: x / dpr,
-              oy: y / dpr,
-              x: x / dpr,
-              y: y / dpr,
+      offCtx.scale(dpr, dpr);
+      offCtx.fillStyle = "#ffffff";
+      offCtx.font = `900 ${targetFontSize}px Anton, "Space Grotesk", Impact, "Arial Black", sans-serif`;
+      offCtx.textBaseline = "middle";
+      offCtx.textAlign = "center";
+      offCtx.letterSpacing = "2px";
+      offCtx.fillText(text, width / 2, height / 2);
+
+      const imgData = offCtx.getImageData(0, 0, offCanvas.width, offCanvas.height);
+      const data = imgData.data;
+      const newParticles: Particle[] = [];
+      const step = Math.max(Math.round(4 * dpr), 3); // crisp density
+
+      for (let y = 0; y < offCanvas.height; y += step) {
+        for (let x = 0; x < offCanvas.width; x += step) {
+          const alphaIdx = (y * offCanvas.width + x) * 4 + 3;
+          if (data[alphaIdx] > 100) {
+            const px = x / dpr;
+            const py = y / dpr;
+            newParticles.push({
+              ox: px,
+              oy: py,
+              x: px,
+              y: py,
               vx: 0,
               vy: 0,
             });
           }
         }
       }
-      ctx.clearRect(0, 0, width, height);
+
+      particles = newParticles;
     };
 
-    const tick = () => {
-      ctx.clearRect(0, 0, width, height);
-      const mouse = mouseRef.current;
-      const repelRadius = 90;
-      const repelRadius2 = repelRadius * repelRadius;
+    const render = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.save();
+      ctx.scale(dpr, dpr);
 
-      // Update + draw points
+      const mouse = mouseRef.current;
+      const repelRadius = 100;
+      const repelRadiusSq = repelRadius * repelRadius;
+      const isDark = document.documentElement.classList.contains("dark");
+
+      // 1. Physics update
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         const dx = p.x - mouse.x;
         const dy = p.y - mouse.y;
-        const d2 = dx * dx + dy * dy;
-        if (mouse.active && d2 < repelRadius2 && d2 > 0.01) {
-          const d = Math.sqrt(d2);
-          const force = (1 - d / repelRadius) * 5;
-          p.vx += (dx / d) * force;
-          p.vy += (dy / d) * force;
+        const distSq = dx * dx + dy * dy;
+
+        if (mouse.active && distSq < repelRadiusSq && distSq > 0.1) {
+          const dist = Math.sqrt(distSq);
+          const force = (1 - dist / repelRadius) * 6;
+          p.vx += (dx / dist) * force;
+          p.vy += (dy / dist) * force;
         }
-        // spring back to origin
-        p.vx += (p.ox - p.x) * 0.045;
-        p.vy += (p.oy - p.y) * 0.045;
+
+        // Elastic return spring
+        p.vx += (p.ox - p.x) * 0.06;
+        p.vy += (p.oy - p.y) * 0.06;
         p.vx *= 0.82;
         p.vy *= 0.82;
         p.x += p.vx;
         p.y += p.vy;
       }
 
-      // Draw connections (only for displaced particles, sampled)
-      ctx.strokeStyle = "rgba(139, 92, 246, 0.18)";
-      ctx.lineWidth = 0.5;
-      const sample = 6;
-      for (let i = 0; i < particles.length; i += sample) {
-        const a = particles[i];
-        const moved = Math.abs(a.x - a.ox) + Math.abs(a.y - a.oy);
-        if (moved < 4) continue;
-        for (let j = i + sample; j < Math.min(i + sample * 6, particles.length); j += sample) {
-          const b = particles[j];
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
-          const d2 = dx * dx + dy * dy;
-          if (d2 < 900) {
+      // 2. Draw neural connections between moving particles
+      ctx.lineWidth = 0.6;
+      ctx.strokeStyle = "rgba(139, 92, 246, 0.28)";
+      const sampleRate = 5;
+      for (let i = 0; i < particles.length; i += sampleRate) {
+        const p1 = particles[i];
+        const moved = Math.abs(p1.x - p1.ox) + Math.abs(p1.y - p1.oy);
+        if (moved < 3) continue;
+
+        for (let j = i + sampleRate; j < Math.min(i + sampleRate * 5, particles.length); j += sampleRate) {
+          const p2 = particles[j];
+          const cdx = p1.x - p2.x;
+          const cdy = p1.y - p2.y;
+          const cDistSq = cdx * cdx + cdy * cdy;
+          if (cDistSq < 1200) {
             ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
             ctx.stroke();
           }
         }
       }
 
-      // Draw points
-      const isDark = document.documentElement.classList.contains("dark");
+      // 3. Draw high-definition neural particles
+      const defaultColor = isDark ? "rgba(241, 245, 249, 0.95)" : "rgba(15, 23, 42, 0.95)";
+      const activeColor = "rgba(147, 51, 234, 1)";
+
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         const moved = Math.abs(p.x - p.ox) + Math.abs(p.y - p.oy);
-        ctx.fillStyle = moved > 6 ? "rgba(139, 92, 246, 0.95)" : (isDark ? "rgba(240, 240, 245, 0.92)" : "rgba(15, 23, 42, 0.92)");
-        ctx.fillRect(p.x, p.y, 2.5, 2.5);
+        ctx.fillStyle = moved > 4 ? activeColor : defaultColor;
+        ctx.fillRect(p.x, p.y, 2.6, 2.6);
       }
 
-      raf = requestAnimationFrame(tick);
+      ctx.restore();
+      raf = requestAnimationFrame(render);
     };
 
-    const onMove = (e: MouseEvent) => {
+    const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
       mouseRef.current.x = e.clientX - rect.left;
       mouseRef.current.y = e.clientY - rect.top;
       mouseRef.current.active = true;
     };
-    const onLeave = () => {
+
+    const handleMouseLeave = () => {
       mouseRef.current.active = false;
       mouseRef.current.x = -9999;
       mouseRef.current.y = -9999;
     };
-    const onTouch = (e: TouchEvent) => {
-      const t = e.touches[0];
-      if (!t) return;
-      const rect = canvas.getBoundingClientRect();
-      mouseRef.current.x = t.clientX - rect.left;
-      mouseRef.current.y = t.clientY - rect.top;
-      mouseRef.current.active = true;
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const rect = canvas.getBoundingClientRect();
+        mouseRef.current.x = e.touches[0].clientX - rect.left;
+        mouseRef.current.y = e.touches[0].clientY - rect.top;
+        mouseRef.current.active = true;
+      }
     };
 
     let resizeObserver: ResizeObserver | null = null;
 
-    const onResize = () => {
-      cancelAnimationFrame(raf);
-      buildParticles();
-      raf = requestAnimationFrame(tick);
-    };
-
-    const init = async () => {
+    const setup = async () => {
       if (document.fonts) {
         try {
           await document.fonts.ready;
@@ -176,28 +195,30 @@ export function NeuronName({ text, fontSize = 180, className }: Props) {
 
       buildParticles();
 
-      // Retry once if font wasn't ready in time (common on mobile)
+      // Ensure particles are populated even if initial render was 0-width
       if (particles.length === 0) {
-        await new Promise<void>((r) => setTimeout(r, 200));
-        buildParticles();
+        setTimeout(buildParticles, 100);
+        setTimeout(buildParticles, 400);
       }
 
-      raf = requestAnimationFrame(tick);
+      raf = requestAnimationFrame(render);
 
       if (window.ResizeObserver && wrap) {
-        resizeObserver = new ResizeObserver(onResize);
+        resizeObserver = new ResizeObserver(() => {
+          buildParticles();
+        });
         resizeObserver.observe(wrap);
       } else {
-        window.addEventListener("resize", onResize);
+        window.addEventListener("resize", buildParticles);
       }
     };
 
-    canvas.addEventListener("mousemove", onMove);
-    canvas.addEventListener("mouseleave", onLeave);
-    canvas.addEventListener("touchmove", onTouch, { passive: true });
-    canvas.addEventListener("touchend", onLeave);
+    canvas.addEventListener("mousemove", handleMouseMove);
+    canvas.addEventListener("mouseleave", handleMouseLeave);
+    canvas.addEventListener("touchmove", handleTouchMove, { passive: true });
+    canvas.addEventListener("touchend", handleMouseLeave);
 
-    init();
+    setup();
 
     return () => {
       cancelAnimationFrame(raf);
@@ -205,17 +226,17 @@ export function NeuronName({ text, fontSize = 180, className }: Props) {
         resizeObserver.unobserve(wrap);
         resizeObserver.disconnect();
       } else {
-        window.removeEventListener("resize", onResize);
+        window.removeEventListener("resize", buildParticles);
       }
-      canvas.removeEventListener("mousemove", onMove);
-      canvas.removeEventListener("mouseleave", onLeave);
-      canvas.removeEventListener("touchmove", onTouch);
-      canvas.removeEventListener("touchend", onLeave);
+      canvas.removeEventListener("mousemove", handleMouseMove);
+      canvas.removeEventListener("mouseleave", handleMouseLeave);
+      canvas.removeEventListener("touchmove", handleTouchMove);
+      canvas.removeEventListener("touchend", handleMouseLeave);
     };
   }, [text, fontSize]);
 
   return (
-    <div ref={wrapRef} className={className} aria-label={text}>
+    <div ref={wrapRef} className={`w-full overflow-visible ${className || ""}`} aria-label={text}>
       <canvas ref={canvasRef} className="block w-full cursor-crosshair" />
     </div>
   );
