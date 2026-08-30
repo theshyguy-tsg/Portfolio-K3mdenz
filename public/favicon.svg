@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a14"/>
+      <stop offset="50%" stop-color="#120c24"/>
+      <stop offset="100%" stop-color="#05050a"/>
+    </linearGradient>
+
+    <!-- Aurora Neon Violet to Cyan Gradient -->
+    <linearGradient id="auroraGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="45%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+
+    <!-- Electric Cyan Gradient -->
+    <linearGradient id="cyanGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="60%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Container Background -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)" stroke="#8b5cf6" stroke-width="6" stroke-opacity="0.3"/>
+
+  <!-- Inner Ambient Glow Circle -->
+  <circle cx="256" cy="256" r="180" fill="#8b5cf6" opacity="0.12" filter="blur(40px)"/>
+
+  <!-- Stylized Cyber Monogram "K" with Neural Node Geometry -->
+  <g filter="url(#glow)">
+    <!-- Left Vertical Stem -->
+    <path d="M140 120 C140 108 149 98 161 98 L195 98 C207 98 216 108 216 120 L216 392 C216 404 207 414 195 414 L161 414 C149 414 140 404 140 392 Z" fill="url(#auroraGrad)"/>
+
+    <!-- Top Diagonal Arm -->
+    <path d="M210 270 L320 132 C328 122 342 118 354 124 L382 138 C394 144 397 160 388 170 L285 295 Z" fill="url(#auroraGrad)"/>
+
+    <!-- Bottom Diagonal Arm with Cyber Accent -->
+    <path d="M260 265 L368 382 C376 392 374 407 363 414 L336 428 C324 434 310 429 302 419 L198 300 Z" fill="url(#cyanGrad)"/>
+
+    <!-- Cyber / Neural Accent Orb -->
+    <circle cx="365" cy="145" r="16" fill="#22d3ee"/>
+    <circle cx="365" cy="145" r="8" fill="#ffffff"/>
+    
+    <circle cx="350" cy="405" r="14" fill="#a855f7"/>
+    <circle cx="350" cy="405" r="6" fill="#ffffff"/>
+
+    <circle cx="178" cy="118" r="12" fill="#38bdf8"/>
+    <circle cx="178" cy="394" r="12" fill="#8b5cf6"/>
+  </g>
+
+  <!-- High-Tech Circuit Connector Lines -->
+  <path d="M365 145 L415 145 C425 145 432 152 432 162 L432 210" stroke="#06b6d4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.7"/>
+  <circle cx="432" cy="210" r="7" fill="#22d3ee"/>
+
+  <!-- Modern "3" subscript accent for K3MDENZ -->
+  <path d="M400 320 C420 320 435 332 435 350 C435 362 426 372 414 376 C430 380 440 393 440 410 C440 430 420 444 395 444 L375 444 C365 444 360 438 360 430 C360 422 365 416 375 416 L395 416 C406 416 414 410 414 402 C414 394 406 388 395 388 L380 388 C372 388 368 382 368 376 C368 370 372 364 380 364 L395 364 C405 364 411 358 411 350 C411 342 405 336 395 336 L380 336 C370 336 364 330 364 322 C364 314 370 308 380 308 L400 308" fill="url(#auroraGrad)" opacity="0.95"/>
+</svg>
