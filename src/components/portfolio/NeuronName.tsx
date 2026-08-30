@@ -215,17 +215,8 @@ export function NeuronName({ text, fontSize = 180, className }: Props) {
   }, [text, fontSize]);
 
   return (
-    <div ref={wrapRef} className={`relative flex items-center overflow-visible ${className || ""}`} aria-label={text}>
-      {/* 1. Underlying Bold Display H1 for 100% Guaranteed Visibility */}
-      <h1 className="font-display text-6xl font-black uppercase tracking-tight text-foreground transition-opacity duration-500 sm:text-8xl md:text-9xl lg:text-[10.5rem] leading-none select-none py-2">
-        {text}
-      </h1>
-
-      {/* 2. Interactive Canvas Overlay for Neural Particle Mesh */}
-      <canvas
-        ref={canvasRef}
-        className="pointer-events-auto absolute inset-0 block h-full w-full cursor-crosshair opacity-80 mix-blend-difference hover:opacity-100"
-      />
+    <div ref={wrapRef} className={className} aria-label={text}>
+      <canvas ref={canvasRef} className="block w-full cursor-crosshair" />
     </div>
   );
 }
