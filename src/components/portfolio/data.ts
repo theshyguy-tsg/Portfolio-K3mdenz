@@ -214,8 +214,8 @@ export const projectsData = [
     deploy: "K3MDENZ.SITE (BETA LIVE)",
     deployUrl: "https://k3mdenz.site",
     layout: "preview",
-    preview: "/images/kemdenz_buffet_showcase.jpg",
-    bannerImage: "/images/kemdenz_buffet_showcase.jpg",
+    preview: "/images/kemdenz_buffet_real.png",
+    bannerImage: "/images/kemdenz_buffet_real.png",
     about:
       "Đồ án tốt nghiệp Chuyên ngành Phát triển phần mềm (FPT Polytechnic - Sinh viên: Nguyễn Công Khiêm, Mã SV: SD33): Hệ thống Monorepo Đặt bàn & Quản lý Chuỗi Nhà hàng Buffet KemDenz. Tích hợp 5 Phân hệ Portals vận hành trên cùng Monorepo (Customer Portal đặt bàn 2D, Cashier POS thu ngân, KDS Kitchen Display màn hình bếp, Staff Mobile phục vụ, Admin Command Center), CSDL PostgreSQL 16 quản lý qua 41 migration Flyway, Redis 7 (khóa phân tán SETNX & Rate limit), STOMP over WebSocket và Apache POI kết xuất báo cáo Excel.",
     problemStatement:
@@ -313,7 +313,7 @@ export const projectsData = [
       { phase: "PHASE 05", title: "Stress-Test Tải Cao & Báo Cáo Tốt Nghiệp", done: false, desc: "Kiểm thử tải đồng thời, tối ưu 60FPS và chuẩn bị hồ sơ bảo vệ DATN-SD33." },
     ],
     gallery: [
-      { title: "Customer Portal & Menu", image: "/images/hero_seafood_bbq.png", caption: "Giao diện trang chủ đặt bàn trực tuyến và thực đơn món nướng hải sản cao cấp." },
+      { title: "Sảnh Chính Customer Portal", image: "/images/kemdenz_buffet_real.png", caption: "Giao diện trang chủ đặt bàn trực tuyến và thực đơn món nướng hải sản cao cấp." },
       { title: "Sơ đồ Tầng 2D Thông minh", image: "/images/luxury_floor_plan.png", caption: "Bản đồ bàn 2D thời gian thực hiển thị trạng thái vị trí bàn theo từng tầng." },
       { title: "Không gian Nhà hàng Sang trọng", image: "/images/restaurant_interior.png", caption: "Mô hình kiến trúc không gian Fine Dining và khu vực quầy buffet line." },
     ],
@@ -336,8 +336,8 @@ export const projectsData = [
     deploy: "NETLIFY HOSTED",
     deployUrl: "https://statuesque-kashata-23f0cd.netlify.app/",
     layout: "preview",
-    preview: "/images/dating_app_showcase.jpg",
-    bannerImage: "/images/dating_app_showcase.jpg",
+    preview: "/images/dating_app_real.png",
+    bannerImage: "/images/dating_app_real.png",
     about:
       "Dating app cá nhân — Động cơ Dựng & Trải Nghiệm Kịch Bản Hẹn Hò Tương Tác cho Cặp đôi theo mô hình Creator-Player qua 4 Phase điện ảnh (Cinematic). Flow tương tác trực tiếp, bộ trắc nghiệm Tarot và lưu trữ ảnh check-in qua IndexedDB Client Storage, xây dựng trên nền tảng React và Framer Motion.",
     problemStatement:
@@ -368,7 +368,7 @@ export const projectsData = [
       { phase: "PHASE 03", title: "Deploy Netlify", done: true, desc: "Phát hành bản Client Web." },
     ],
     gallery: [
-      { title: "Giao diện Hẹn Hò Điện Ảnh", image: "/images/dating_app_showcase.jpg", caption: "Không gian trải nghiệm hẹn hò bí ẩn và lãng mạn." },
+      { title: "Sảnh Kịch Bản Hẹn Hò", image: "/images/dating_app_real.png", caption: "Giao diện trải nghiệm hẹn hò bí ẩn và lãng mạn thực tế." },
     ],
     stack: ["React", "Tailwind CSS", "Framer Motion", "IndexedDB", "Netlify"],
   },
@@ -389,8 +389,8 @@ export const projectsData = [
     deploy: "VERCEL HOSTED",
     deployUrl: "https://spin-ran-dom.vercel.app",
     layout: "preview",
-    preview: "/images/spin_quizz_showcase.jpg",
-    bannerImage: "/images/spin_quizz_showcase.jpg",
+    preview: "/images/spin_quizz_real.png",
+    bannerImage: "/images/spin_quizz_real.png",
     about:
       "Nền tảng trò chơi vòng quay may mắn kết hợp trả lời câu hỏi hỗ trợ chế độ chơi Đơn và Multiplayer. Sử dụng CSDL PostgreSQL độc lập, Express REST API, WebSocket kết nối thời gian thực, Spring Physics Canvas Engine mô phỏng lực ma sát & quán tính thật, thẻ bài 3D Parallax mượt mà 60FPS và Studio cho phép người chơi tự tạo nội dung ô quay riêng.",
     problemStatement:
@@ -438,7 +438,7 @@ export const projectsData = [
       { phase: "PHASE 03", title: "Xây dựng Backend PostgreSQL & WebSocket", done: true, desc: "Tự chủ hạ tầng CSDL PostgreSQL và máy chủ WebSocket hai chiều." },
     ],
     gallery: [
-      { title: "Vòng Quay & Thẻ Bài 3D", image: "/images/spin_quizz_showcase.jpg", caption: "Giao diện trò chơi vòng quay và câu hỏi trắc nghiệm." },
+      { title: "Sảnh Chính Trò Chơi", image: "/images/spin_quizz_real.png", caption: "Giao diện trò chơi vòng quay và câu hỏi trắc nghiệm thực tế." },
     ],
     stack: ["React", "TypeScript", "PostgreSQL", "Express.js", "WebSocket", "Docker", "Framer Motion", "Canvas API", "Vercel"],
   },
