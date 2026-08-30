@@ -128,11 +128,12 @@ export function NeuronName({ text, fontSize = 180, className }: Props) {
       }
 
       // Draw points
+      const isDark = document.documentElement.classList.contains("dark");
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         const moved = Math.abs(p.x - p.ox) + Math.abs(p.y - p.oy);
-        ctx.fillStyle = moved > 6 ? "rgba(139, 92, 246, 0.95)" : "rgba(40, 30, 70, 0.92)";
-        ctx.fillRect(p.x, p.y, 2, 2);
+        ctx.fillStyle = moved > 6 ? "rgba(139, 92, 246, 0.95)" : (isDark ? "rgba(240, 240, 245, 0.92)" : "rgba(15, 23, 42, 0.92)");
+        ctx.fillRect(p.x, p.y, 2.5, 2.5);
       }
 
       raf = requestAnimationFrame(tick);
@@ -177,14 +178,12 @@ export function NeuronName({ text, fontSize = 180, className }: Props) {
 
       // Retry once if font wasn't ready in time (common on mobile)
       if (particles.length === 0) {
-        await new Promise<void>((r) => setTimeout(r, 300));
+        await new Promise<void>((r) => setTimeout(r, 200));
         buildParticles();
       }
 
       raf = requestAnimationFrame(tick);
 
-      // Set up resize observer AFTER font is confirmed loaded so the initial
-      // observation callback doesn't race with an empty particle array.
       if (window.ResizeObserver && wrap) {
         resizeObserver = new ResizeObserver(onResize);
         resizeObserver.observe(wrap);
@@ -216,8 +215,17 @@ export function NeuronName({ text, fontSize = 180, className }: Props) {
   }, [text, fontSize]);
 
   return (
-    <div ref={wrapRef} className={className} aria-label={text}>
-      <canvas ref={canvasRef} className="block w-full cursor-crosshair" />
+    <div ref={wrapRef} className={`relative flex items-center overflow-visible ${className || ""}`} aria-label={text}>
+      {/* 1. Underlying Bold Display H1 for 100% Guaranteed Visibility */}
+      <h1 className="font-display text-6xl font-black uppercase tracking-tight text-foreground transition-opacity duration-500 sm:text-8xl md:text-9xl lg:text-[10.5rem] leading-none select-none py-2">
+        {text}
+      </h1>
+
+      {/* 2. Interactive Canvas Overlay for Neural Particle Mesh */}
+      <canvas
+        ref={canvasRef}
+        className="pointer-events-auto absolute inset-0 block h-full w-full cursor-crosshair opacity-80 mix-blend-difference hover:opacity-100"
+      />
     </div>
   );
 }
